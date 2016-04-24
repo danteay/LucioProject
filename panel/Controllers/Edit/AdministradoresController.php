@@ -14,7 +14,7 @@ use CorePHP\Models\Administradores;
 
 class AdministradoresController
 {
-    private $message;
+    private $message; 
 
     public function edit($data)
     {
