@@ -1,19 +1,18 @@
 <?php
 require_once __DIR__."/../../vendor/autoload.php";
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
 use CorePHP\Models\Cursos;
 
-$instance = new Cursos();
-$id = $_GET['id'];
+$curso = new Cursos();
+$id = $_GET['curso'];
+
+$flag = $curso->getItem($id);
 ?>
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Editar Curso</title>
+    <title>Nuevo Documento de Curso</title>
 
     <link rel="stylesheet" href="../../css/foundation.min.css">
     <link rel="stylesheet" href="../../css/app.css">
@@ -60,15 +59,14 @@ $id = $_GET['id'];
 </nav>
 
 <main>
-
     <header class="row">
         <div class="large-12 columns">
-            <h2>Editar Curso</h2>
+            <h2>Nuevo Documento de Curso</h2>
             <hr>
         </div>
     </header>
 
-    <?php if($instance->getItem($id)){ ?>
+    <?php if($flag){ ?>
         <?php if(isset($_GET['error'])){ ?>
             <section class="row">
                 <div class="large-12 columns">
@@ -84,14 +82,8 @@ $id = $_GET['id'];
                 <div class="top-bar">
                     <div class="top-bar-right">
                         <ul class="menu">
-                            <li><a class="button" href="../Report/Cursos.php">Cancelar</a></li>
-                            <li>
-                                <a href="../../Controllers/Edit/CursosController.php?id=<?php echo $id; ?>"
-                                   class="button alert">
-                                    Eliminar
-                                </a>
-                            </li>
-                            <li><a id="sentform" class="button success" href="#">Guardar</a></li>
+                            <li><a href="../Details/Cursos.php?id=<?php echo $id; ?>" class="button">Cancelar</a></li>
+                            <li><a id="sentform" href="#" class="button success">Guardar</a></li>
                         </ul>
                     </div>
                 </div>
@@ -101,41 +93,21 @@ $id = $_GET['id'];
         <div class="row">
             <div class="large-12 columns">
                 <div class="callout">
-                    <form id="editform" action="../../Controllers/Edit/CursosController.php" method="post">
+                    <form id="addform" action="../../Controllers/Add/DocumentosCursoController.php" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="large-12 columns">
-                                <label for="">Titulo
-                                    <input type="text" name="titulo" id="titulo" value="<?php echo $instance->titulo; ?>">
-                                </label>
+                                <label for="">Titulo<input type="text" name="titulo" id="titulo"></label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="large-12 columns">
-                                <label for="">
-                                    Descripcion
-                                    <input type="text" name="descripcion" id="descripcion" value="<?php echo $instance->descripcion; ?>">
-                                </label>
+                                <label for="documento" class="button">Seleccionar Documento</label>
+                                <span style="padding: 1em" id="filename"></span>
+                                <input type="file" id="documento" name="documento" class="show-for-sr">
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="large-12 columns">
-                                <label for="">Temario</label>
-                                <ul class="tabs" data-tabs id="example-tabs">
-                                    <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Fuente</a></li>
-                                    <li class="tabs-title"><a id="preview" href="#panel2">Preview</a></li>
-                                </ul>
-                                <div class="tabs-content" data-tabs-content="example-tabs">
-                                    <div class="tabs-panel is-active" id="panel1">
-                                        <textarea name="temario" id="temario" rows="10"><?php echo $instance->temario; ?></textarea>
-                                    </div>
-                                    <div class="tabs-panel" id="panel2">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+                        <input type="hidden" name="curso" value="<?php echo $id; ?>">
                     </form>
                 </div>
             </div>
@@ -143,8 +115,8 @@ $id = $_GET['id'];
     <?php }else{ ?>
         <section class="row">
             <div class="large-12 columns">
-                <a id="erroredit" href="#" class="atomist-alert">
-                    No se encontro el elemento
+                <a id="errorelem" href="#" class="atomist-alert">
+                    El elemento no ha sido identificado.
                 </a>
             </div>
         </section>
@@ -154,33 +126,30 @@ $id = $_GET['id'];
 
 <script src="../../js/vendor/jquery.js"></script>
 <script src="../../js/vendor/foundation.min.js"></script>
+<script src="../../js/vendor/what-input.js"></script>
 <script src="../../js/app.js"></script>
 <script src="../../js/AtomistAlerts/atomist-alert.js"></script>
 <script src="../../js/bower_components/showdown/dist/showdown.min.js"></script>
+
 <script>
     $(document).ready(function(){
-        var converter = new showdown.Converter();
-        source = $("#temario").val();
-        $("#panel2").html(converter.makeHtml(source));
-
-        $("#erroredit").click(function(evt){
-            evt.preventDefault();
-            window.location.href= "../Report/Administradores.php";
-        });
-
         $("#sentform").click(function(evt){
             evt.preventDefault();
-            document.querySelector("#editform").submit();
+            document.querySelector("#addform").submit();
         });
 
-        $("#preview").click(function(){
-            source = $("#temario").val();
-            $("#panel2").html(converter.makeHtml(source));
+        $("#errorelem").click(function(){
+            window.location.href = "../Report/Cursos.php";
+        });
+
+        $("#documento").change(function(){
+           $("#filename").html($(this).val());
         });
     });
 
     var alerts = new AtomistAlerts();
     alerts.init();
 </script>
+
 </body>
 </html>
