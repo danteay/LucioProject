@@ -1,4 +1,8 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
 require_once __DIR__."/../../vendor/autoload.php";
 
 use CorePHP\Models\Administradores;
@@ -86,9 +90,9 @@ $instance = new Administradores();
                     ?>
 
                         <tr>
-                            <td>
+                            <td style="text-align: center;">
                                 <a href="../Edit/Administradores.php?id=<?php echo $fila->idAdministrador; ?>">
-                                    <img src="../../img/edit.png" alt="Editar">
+                                    <img src="../../img/edit.png" alt="Editar" style="width: 20px; height: auto;">
                                 </a>
                             </td>
                             <td><?php echo $fila->idAdministrador; ?></td>
