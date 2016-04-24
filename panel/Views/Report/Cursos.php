@@ -81,6 +81,7 @@ $instance = new Cursos();
                     <th>ID</th>
                     <th>Titulo</th>
                     <th>Descripcion</th>
+                    <th>Detalles</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -103,6 +104,11 @@ $instance = new Cursos();
                                 substr($fila->descripcion,0,70)."..." :
                                 $fila->descripcion;
                             ?>
+                        </td>
+                        <td>
+                            <a href="../Details/Cursos.php?id=<?php echo $fila->idCurso; ?>">
+                                <img src="../../img/details.png" alt="Detalles" style="width: 20px; height: auto;">
+                            </a>
                         </td>
                     </tr>
 

@@ -6,6 +6,7 @@ class QueryMap
 {
 
     public $queryList = array();
+    
 
     public function AdministradoresQuery()
     {
@@ -111,9 +112,7 @@ class QueryMap
             "getItem" => "SELECT * FROM JuegosCurso WHERE idJuegoCurso = [[id]]",
             "getAllItems" => "SELECT * FROM JuegosCurso",
             "insertItem" => "INSERT INTO JuegosCurso (path,titulo,curso) VALUES ('[[path]]','[[titulo]]',[[curso]])",
-            "updateItepublic function AdministradoresQuery()
-    {
-        $this->queryLim" => "UPDATE JuegosCurso SET [[data]] WHERE idJuegoCurso = [[id]]",
+            "updateItem" => "UPDATE JuegosCurso SET [[data]] WHERE idJuegoCurso = [[id]]",
             "deleteItem" => "DELETE FROM JuegosCurso WHERE idJuegoCurso = [[id]]",
             "getLastItem" => "SELECT MAX(idJuegoCurso) AS 'last' FROM JuegosCurso"
         );
