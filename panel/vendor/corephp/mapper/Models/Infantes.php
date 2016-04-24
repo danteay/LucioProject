@@ -14,6 +14,7 @@ class Infantes extends ModelDefinition {
 	public $paterno;
 	public $materno;
 	public $tutor;
+	public $hashcode;
 
     public function __construct(&$conx = null)
     {
@@ -22,6 +23,7 @@ class Infantes extends ModelDefinition {
 		$this->paterno = null;
 		$this->materno = null;
 		$this->tutor = null;
+		$this->hashcode = null;
 
         $this->initConexion($conx);
     }
@@ -87,13 +89,14 @@ class Infantes extends ModelDefinition {
     {
         extract($data);
 
-        if(isset($nombre) && !empty($nombre) && isset($paterno) && !empty($paterno) && isset($materno) && !empty($materno) && isset($tutor) && is_numeric($tutor)){
+        if(isset($nombre) && !empty($nombre) && isset($paterno) && !empty($paterno) && isset($materno) && !empty($materno) && isset($tutor) && is_numeric($tutor) && isset($hashcode) && !empty($hashcode)){
             $query = $this->query->queryList['Infantes']['insertItem'];
             $insert = array(
                 "[[nombre]]" => $nombre,
 				"[[paterno]]" => $paterno,
 				"[[materno]]" => $materno,
-				"[[tutor]]" => $tutor
+				"[[tutor]]" => $tutor,
+				"[[hashcode]]" => $hashcode
             );
 
             $this->conx->initializeQuery($query, $insert);
