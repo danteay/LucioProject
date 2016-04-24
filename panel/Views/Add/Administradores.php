@@ -71,7 +71,7 @@
             <div class="top-bar">
                 <div class="top-bar-right">
                     <ul class="menu">
-                        <li><a href="../Report/Administradores.php" class="button alert">Cancelar</a></li>
+                        <li><a href="../Report/Administradores.php" class="button">Cancelar</a></li>
                         <li><a id="sentform" href="#" class="button success">Guardar</a></li>
                     </ul>
                 </div>

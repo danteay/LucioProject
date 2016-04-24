@@ -81,7 +81,13 @@ $id = $_GET['id'];
                 <div class="top-bar">
                     <div class="top-bar-right">
                         <ul class="menu">
-                            <li><a class="button alert" href="../Report/Administradores.php">Cancelar</a></li>
+                            <li><a class="button" href="../Report/Administradores.php">Cancelar</a></li>
+                            <li>
+                                <a href="../../Controllers/Edit/AdministradoresController.php?id=<?php echo $id; ?>"
+                                   class="button alert">
+                                    Eliminar
+                                </a>
+                            </li>
                             <li><a id="sentform" class="button success" href="#">Guardar</a></li>
                         </ul>
                     </div>
@@ -96,21 +102,32 @@ $id = $_GET['id'];
                         <div class="row">
                             <div class="large-12 columns">
                                 <label for="">Correo
-                                    <p><?php echo $instance->correo; ?></p>
+                                    <input type="text" name="correo" id="correo" value="<?php echo $instance->correo; ?>" disabled>
                                 </label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="large-12 columns">
-                                label{Contraseña}>
+                                <label for="">
+                                    Contraseña
+                                    <input type="text" name="passwd" id="passwd" value="<?php echo $instance->passwd; ?>">
+                                </label>
                             </div>
                         </div>
+
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
                     </form>
                 </div>
             </div>
         </div>
     <?php }else{ ?>
-
+        <section class="row">
+            <div class="large-12 columns">
+                <a id="erroredit" href="#" class="atomist-alert">
+                    No se encontro el elemento
+                </a>
+            </div>
+        </section>
     <?php } ?>
 
 </main>
@@ -119,6 +136,21 @@ $id = $_GET['id'];
 <script src="../../js/vendor/foundation.min.js"></script>
 <script src="../../js/app.js"></script>
 <script src="../../js/AtomistAlerts/atomist-alert.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#erroredit").click(function(evt){
+            evt.preventDefault();
+            window.location.href= "../Report/Administradores.php";
+        });
 
+        $("#sentform").click(function(evt){
+            evt.preventDefault();
+            document.querySelector("#editform").submit();
+        });
+    });
+    
+    var alerts = new AtomistAlerts();
+    alerts.init();
+</script>
 </body>
 </html>
