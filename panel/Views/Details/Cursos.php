@@ -113,6 +113,198 @@ $flag = $instance->getItem($id);
                     ?>
                 </div>
             </div>
+            <br><br>
+        </section>
+
+        <section>
+            <div class="row">
+                <div class="large-12 columns">
+                    <h4>Contenidos</h4>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <ul class="tabs" data-tabs id="example-tabs">
+                        <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Documentos</a></li>
+                        <li class="tabs-title"><a href="#panel2">Videos</a></li>
+                        <li class="tabs-title"><a href="#panel3">Juegos</a></li>
+                    </ul>
+                    <div class="tabs-content" data-tabs-content="example-tabs">
+
+                        <div class="tabs-panel is-active" id="panel1">
+                            <div class="row">
+                                <div class="large-12 columns">
+                                    <a class="expanded button" href="../Add/DocumentosCurso.php?curso=<?php echo $instance->idCurso; ?>">
+                                        Agregar Documento
+                                    </a>
+                                </div>
+                                <div class="large-12 columns">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Edit</th>
+                                                <th>ID</th>
+                                                <th>Titulo</th>
+                                                <th>Accion</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $alldocs = $docs->getAllItemsByCurso($id);
+                                            while($doc = $alldocs->fetch_object()){
+                                            ?>
+
+                                                <tr>
+                                                    <td style="text-align: center;">
+                                                        <a href="../Edit/DocumentosCurso.php?id=<?php echo $doc->idDocumentoCurso; ?>">
+                                                            <img src="../../img/edit.png" alt="Edit" style="width: 20px; height: auto;">
+                                                        </a>
+                                                    </td>
+                                                    <td><?php echo $doc->idDocumentoCurso; ?></td>
+                                                    <td><?php echo $doc->titulo; ?></td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="large-6 columns">
+                                                                <a target="_blank" href="../../Repo/Documents/<?php echo $doc->documento; ?>">
+                                                                    <img src="../../img/preview.png" alt="View" style="width: 20px; height: auto;">
+                                                                </a>
+                                                            </div>
+                                                            <div class="large-6 columns">
+                                                                <a href="../../Controllers/Edit/DocumentosCurso.php?id=<?php echo $doc->idDocumentoCurso; ?>">
+                                                                    <img src="../../img/delete.png" alt="Delete" style="width: 20px; height: auto;">
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                            <?php
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tabs-panel" id="panel2">
+                            <div class="row">
+                                <div class="large-12 columns">
+                                    <a class="expanded button" href="../Add/VideosCurso.php?curso=<?php echo $id; ?>">
+                                        Agregar Video
+                                    </a>
+                                </div>
+                                <div class="large-12 columns">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>Edit</th>
+                                            <th>ID</th>
+                                            <th>Titulo</th>
+                                            <th>Accion</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                        $allvideos = $videos->getAllItemsByCurso($id);
+                                        while($video = $allvideos->fetch_object()){
+                                            ?>
+
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <a href="../Edit/VideosCurso.php?id=<?php echo $video->idVideoCurso; ?>">
+                                                        <img src="../../img/edit.png" alt="Edit" style="width: 20px; height: auto;">
+                                                    </a>
+                                                </td>
+                                                <td><?php echo $video->idVideoCurso; ?></td>
+                                                <td><?php echo $video->titulo; ?></td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="large-6 columns">
+                                                            <a onclick="previewVideo(<?php echo $video->idVideoCurso; ?>)">
+                                                                <img src="../../img/preview.png" alt="View" style="width: 20px; height: auto;">
+                                                            </a>
+                                                        </div>
+                                                        <div class="large-6 columns">
+                                                            <a href="../../Controllers/Edit/VideosCurso.php?id=<?php echo $video->idVideoCurso; ?>">
+                                                                <img src="../../img/delete.png" alt="Delete" style="width: 20px; height: auto;">
+                                                            </a>
+                                                        </div>
+
+                                                        <input type="hidden" id="video_<?php echo $video->idVideoCurso; ?>" value="<?php echo $video->frame; ?>">
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <?php
+                                        }
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tabs-panel" id="panel3">
+                            <div class="row">
+                                <div class="large-12 columns">
+                                    <a href="../Add/JuegosCurso.php?curso=<?php echo $id ?>" class="expanded button">Agregar Juego</a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="large-12 columns">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Edit</th>
+                                                <th>ID</th>
+                                                <th>Titulo</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $allgames = $games->getAllItemsByCurso($id);
+                                            while($game = $allgames->fetch_object()){
+                                            ?>
+
+                                                <tr>
+                                                    <td style="text-align: center;">
+                                                        <a href="../Edit/JuegosCurso.php?id=<?php echo $game->idJuegoCurso; ?>">
+                                                            <img src="../../img/edit.png" alt="Edit" style="width: 20px; height: auto;">
+                                                        </a>
+                                                    </td>
+                                                    <td><?php echo $game->idJuegocurso; ?></td>
+                                                    <td><?php echo $game->titulo; ?></td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="large-6 columns">
+                                                                <a target="_blank" href="../../Repo/Games/<?php echo $game->path; ?>">
+                                                                    <img src="../../img/preview.png" alt="View" style="width: 20px; height: auto;">
+                                                                </a>
+                                                            </div>
+                                                            <div class="large-6 columns">
+                                                                <a href="../../Controllers/Edit/JuegosCurso.php?id=<?php echo $game->idJuegoCurso; ?>">
+                                                                    <img src="../../img/delete.png" alt="Delete" style="width: 20px; height: auto;">
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                            <?php
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
     <?php }else{ ?>
@@ -127,11 +319,41 @@ $flag = $instance->getItem($id);
     
 </main>
 
+<section class="show-video" style="display: none;">
+    <div class="video-wrapper">
+        <div class="video-container">
+            <div class="row">
+                <div style="color: #FFFFFF;" class="large-10 columns"><h4>Preview</h4></div>
+                <div class="large-2 columns"><a id="closevideo" class="expanded button" href="#">X</a></div>
+            </div>
+            <div id="previewvideo" class="flex-video">
+            </div>
+        </div>
+    </div>
+</section>
+
 <script src="../../js/vendor/jquery.js"></script>
 <script src="../../js/vendor/foundation.min.js"></script>
 <script src="../../js/app.js"></script>
 <script src="../../js/AtomistAlerts/atomist-alert.js"></script>
 <script src="../../js/bower_components/showdown/dist/showdown.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#closevideo").click(function(evt){
+            evt.preventDefault();
+            $("#previewvideo").html("");
+            $(".show-video").fadeOut();
+        });
+
+
+    });
+
+    function previewVideo(id){
+        var video = $("#video_"+id).val();
+        $("#previewvideo").html(video);
+        $(".show-video").fadeIn();
+    }
+</script>
 
 </body>
 </html>

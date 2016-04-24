@@ -78,7 +78,8 @@ class QueryMap
             "insertItem" => "INSERT INTO DocumentosCurso (documento,titulo,curso) VALUES ('[[documento]]','[[titulo]]',[[curso]])",
             "updateItem" => "UPDATE DocumentosCurso SET [[data]] WHERE idDocumentoCurso = [[id]]",
             "deleteItem" => "DELETE FROM DocumentosCurso WHERE idDocumentoCurso = [[id]]",
-            "getLastItem" => "SELECT MAX(idDocumentoCurso) AS 'last' FROM DocumentosCurso"
+            "getLastItem" => "SELECT MAX(idDocumentoCurso) AS 'last' FROM DocumentosCurso",
+            "getAllItemsByCurso" => "SELECT * FROM DocumentosCurso WHERE curso = [[id]]"
         );
     }
 
@@ -114,7 +115,8 @@ class QueryMap
             "insertItem" => "INSERT INTO JuegosCurso (path,titulo,curso) VALUES ('[[path]]','[[titulo]]',[[curso]])",
             "updateItem" => "UPDATE JuegosCurso SET [[data]] WHERE idJuegoCurso = [[id]]",
             "deleteItem" => "DELETE FROM JuegosCurso WHERE idJuegoCurso = [[id]]",
-            "getLastItem" => "SELECT MAX(idJuegoCurso) AS 'last' FROM JuegosCurso"
+            "getLastItem" => "SELECT MAX(idJuegoCurso) AS 'last' FROM JuegosCurso",
+            "getAllItemsByCurso" => "SELECT * FROM JuegosCurso WHERE curso = [[id]]"
         );
     }
 
@@ -138,7 +140,8 @@ class QueryMap
             "insertItem" => "INSERT INTO VideosCurso (frame,titulo,curso) VALUES ('[[frame]]','[[titulo]]',[[curso]])",
             "updateItem" => "UPDATE VideosCurso SET [[data]] WHERE idVideoCurso = [[id]]",
             "deleteItem" => "DELETE FROM VideosCurso WHERE idVideoCurso = [[id]]",
-            "getLastItem" => "SELECT MAX(idVideoCurso) AS 'last' FROM VideosCurso"
+            "getLastItem" => "SELECT MAX(idVideoCurso) AS 'last' FROM VideosCurso",
+            "getAllItemsByCurso" => "SELECT * FROM VideosCurso WHERE curso = [[id]]"
         );
     }
 
