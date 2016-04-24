@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Nuevo Administrador</title>
+    <title>Nuevo Curso</title>
 
     <link rel="stylesheet" href="../../css/foundation.min.css">
     <link rel="stylesheet" href="../../css/app.css">
@@ -51,19 +51,19 @@
 <main>
     <header class="row">
         <div class="large-12 columns">
-            <h2>Nuevo Administrador</h2>
+            <h2>Nuevo Curso</h2>
             <hr>
         </div>
     </header>
 
     <?php if(isset($_GET['error'])){ ?>
-    <section class="row">
-        <div class="large-12 columns">
-            <a href="#" class="atomist-alert">
-                <?php echo $_GET['error']; ?>
-            </a>
-        </div>
-    </section>
+        <section class="row">
+            <div class="large-12 columns">
+                <a href="#" class="atomist-alert">
+                    <?php echo $_GET['error']; ?>
+                </a>
+            </div>
+        </section>
     <?php } ?>
 
     <section class="row">
@@ -82,15 +82,32 @@
     <div class="row">
         <div class="large-12 columns">
             <div class="callout">
-                <form id="addform" action="../../Controllers/Add/AdministradoresController.php" method="post">
+                <form id="addform" action="../../Controllers/Add/CursosController.php" method="post">
                     <div class="row">
                         <div class="large-12 columns">
-                            <label for="">Correo<input type="email" name="correo" id="correo"></label>
+                            <label for="">Titulo<input type="text" name="titulo" id="titulo"></label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="large-12 columns">
-                            <label for="">Contraseña<input type="password" name="passwd" id="passwd"></label>
+                            <label for="">Descripción<input type="text" name="descripcion" id="descripcion"></label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <label for="">Temario</label>
+                            <ul class="tabs" data-tabs id="example-tabs">
+                                <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Fuente</a></li>
+                                <li class="tabs-title"><a id="preview" href="#panel2">Preview</a></li>
+                            </ul>
+                            <div class="tabs-content" data-tabs-content="example-tabs">
+                                <div class="tabs-panel is-active" id="panel1">
+                                    <textarea name="temario" id="temario" rows="10"></textarea>
+                                </div>
+                                <div class="tabs-panel" id="panel2">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -105,12 +122,19 @@
 <script src="../../js/vendor/what-input.js"></script>
 <script src="../../js/app.js"></script>
 <script src="../../js/AtomistAlerts/atomist-alert.js"></script>
+<script src="../../js/bower_components/showdown/dist/showdown.min.js"></script>
 
 <script>
     $(document).ready(function(){
         $("#sentform").click(function(evt){
             evt.preventDefault();
             document.querySelector("#addform").submit();
+        });
+
+        $("#preview").click(function(){
+            var converter = new showdown.Converter();
+            source = $("#temario").val();
+            $("#panel2").html(converter.makeHtml(source));
         });
     });
 

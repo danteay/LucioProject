@@ -4,16 +4,16 @@ require_once __DIR__."/../../vendor/autoload.php";
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-use CorePHP\Models\Administradores;
+use CorePHP\Models\Cursos;
 
-$instance = new Administradores();
+$instance = new Cursos();
 $id = $_GET['id'];
 ?>
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Editar Administradores</title>
+    <title>Editar Curso</title>
 
     <link rel="stylesheet" href="../../css/foundation.min.css">
     <link rel="stylesheet" href="../../css/app.css">
@@ -63,7 +63,7 @@ $id = $_GET['id'];
 
     <header class="row">
         <div class="large-12 columns">
-            <h2>Editar Administrador</h2>
+            <h2>Editar Curso</h2>
             <hr>
         </div>
     </header>
@@ -84,9 +84,9 @@ $id = $_GET['id'];
                 <div class="top-bar">
                     <div class="top-bar-right">
                         <ul class="menu">
-                            <li><a class="button" href="../Report/Administradores.php">Cancelar</a></li>
+                            <li><a class="button" href="../Report/Cursos.php">Cancelar</a></li>
                             <li>
-                                <a href="../../Controllers/Edit/AdministradoresController.php?id=<?php echo $id; ?>"
+                                <a href="../../Controllers/Edit/CursosController.php?id=<?php echo $id; ?>"
                                    class="button alert">
                                     Eliminar
                                 </a>
@@ -101,20 +101,37 @@ $id = $_GET['id'];
         <div class="row">
             <div class="large-12 columns">
                 <div class="callout">
-                    <form id="editform" action="../../Controllers/Edit/AdministradoresController.php" method="post">
+                    <form id="editform" action="../../Controllers/Edit/CursosController.php" method="post">
                         <div class="row">
                             <div class="large-12 columns">
-                                <label for="">Correo
-                                    <input type="text" name="correo" id="correo" value="<?php echo $instance->correo; ?>" disabled>
+                                <label for="">Titulo
+                                    <input type="text" name="titulo" id="titulo" value="<?php echo $instance->titulo; ?>">
                                 </label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="large-12 columns">
                                 <label for="">
-                                    Contraseña
-                                    <input type="text" name="passwd" id="passwd" value="<?php echo $instance->passwd; ?>">
+                                    Descripcion
+                                    <input type="text" name="descripcion" id="descripcion" value="<?php echo $instance->descripcion; ?>">
                                 </label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <label for="">Temario</label>
+                                <ul class="tabs" data-tabs id="example-tabs">
+                                    <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Fuente</a></li>
+                                    <li class="tabs-title"><a id="preview" href="#panel2">Preview</a></li>
+                                </ul>
+                                <div class="tabs-content" data-tabs-content="example-tabs">
+                                    <div class="tabs-panel is-active" id="panel1">
+                                        <textarea name="temario" id="temario" rows="10"><?php echo $instance->temario; ?></textarea>
+                                    </div>
+                                    <div class="tabs-panel" id="panel2">
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -139,8 +156,13 @@ $id = $_GET['id'];
 <script src="../../js/vendor/foundation.min.js"></script>
 <script src="../../js/app.js"></script>
 <script src="../../js/AtomistAlerts/atomist-alert.js"></script>
+<script src="../../js/bower_components/showdown/dist/showdown.min.js"></script>
 <script>
     $(document).ready(function(){
+        var converter = new showdown.Converter();
+        source = $("#temario").val();
+        $("#panel2").html(converter.makeHtml(source));
+
         $("#erroredit").click(function(evt){
             evt.preventDefault();
             window.location.href= "../Report/Administradores.php";
@@ -150,8 +172,13 @@ $id = $_GET['id'];
             evt.preventDefault();
             document.querySelector("#editform").submit();
         });
+
+        $("#preview").click(function(){
+            source = $("#temario").val();
+            $("#panel2").html(converter.makeHtml(source));
+        });
     });
-    
+
     var alerts = new AtomistAlerts();
     alerts.init();
 </script>

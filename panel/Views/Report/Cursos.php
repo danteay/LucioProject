@@ -1,12 +1,23 @@
+<?php
+
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
+require_once __DIR__."/../../vendor/autoload.php";
+
+use CorePHP\Models\Cursos;
+
+$instance = new Cursos();
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Nuevo Administrador</title>
+    <title>Reporte Cursos</title>
 
     <link rel="stylesheet" href="../../css/foundation.min.css">
     <link rel="stylesheet" href="../../css/app.css">
-    <link rel="stylesheet" href="../../js/AtomistAlerts/atomist-alert.css">
 </head>
 <body>
 
@@ -49,74 +60,64 @@
 </nav>
 
 <main>
-    <header class="row">
-        <div class="large-12 columns">
-            <h2>Nuevo Administrador</h2>
-            <hr>
-        </div>
-    </header>
-
-    <?php if(isset($_GET['error'])){ ?>
-    <section class="row">
-        <div class="large-12 columns">
-            <a href="#" class="atomist-alert">
-                <?php echo $_GET['error']; ?>
-            </a>
-        </div>
-    </section>
-    <?php } ?>
-
-    <section class="row">
-        <div class="large-12 columns">
-            <div class="top-bar">
-                <div class="top-bar-right">
-                    <ul class="menu">
-                        <li><a href="../Report/Administradores.php" class="button">Cancelar</a></li>
-                        <li><a id="sentform" href="#" class="button success">Guardar</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <div class="row">
+        <div class="large-10 columns">
+            <h2>Reporte Cursos</h2>
+        </div>
+        <div class="large-2 columns">
+            <a class=" expanded button" href="../Add/Cursos.php">Nuevo</a>
+        </div>
         <div class="large-12 columns">
-            <div class="callout">
-                <form id="addform" action="../../Controllers/Add/AdministradoresController.php" method="post">
-                    <div class="row">
-                        <div class="large-12 columns">
-                            <label for="">Correo<input type="email" name="correo" id="correo"></label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="large-12 columns">
-                            <label for="">Contraseña<input type="password" name="passwd" id="passwd"></label>
-                        </div>
-                    </div>
-                </form>
-            </div>
+            <hr>
         </div>
     </div>
 
+    <div class="row">
+        <div class="large-12 columns">
+            <table>
+                <thead>
+                <tr>
+                    <th>Editar</th>
+                    <th>ID</th>
+                    <th>Titulo</th>
+                    <th>Descripcion</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                $allrows = $instance->getAllItems();
+                while ($fila = $allrows->fetch_object()){
+                    ?>
+
+                    <tr>
+                        <td style="text-align: center;">
+                            <a href="../Edit/Cursos.php?id=<?php echo $fila->idCurso; ?>">
+                                <img src="../../img/edit.png" alt="Editar" style="width: 20px; height: auto;">
+                            </a>
+                        </td>
+                        <td><?php echo $fila->idCurso; ?></td>
+                        <td><?php echo $fila->titulo; ?></td>
+                        <td>
+                            <?php
+                            echo (count_chars($fila->descripcion) > 70) ?
+                                substr($fila->descripcion,0,70)."..." :
+                                $fila->descripcion;
+                            ?>
+                        </td>
+                    </tr>
+
+                    <?php
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </main>
 
 <script src="../../js/vendor/jquery.js"></script>
 <script src="../../js/vendor/foundation.min.js"></script>
-<script src="../../js/vendor/what-input.js"></script>
 <script src="../../js/app.js"></script>
-<script src="../../js/AtomistAlerts/atomist-alert.js"></script>
-
-<script>
-    $(document).ready(function(){
-        $("#sentform").click(function(evt){
-            evt.preventDefault();
-            document.querySelector("#addform").submit();
-        });
-    });
-
-    var alerts = new AtomistAlerts();
-    alerts.init();
-</script>
 
 </body>
 </html>
