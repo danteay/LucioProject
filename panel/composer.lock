@@ -1,0 +1,61 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "89621669e8614d16f29eebb9937a2b68",
+    "content-hash": "cd4dcebcae62061c3182b1453dcedf63",
+    "packages": [
+        {
+            "name": "corephp/mapper",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/danteay/CorePHPMapper.git",
+                "reference": "b5ca058876edd579af9cff730202dc12f10a05f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/danteay/CorePHPMapper/zipball/b5ca058876edd579af9cff730202dc12f10a05f3",
+                "reference": "b5ca058876edd579af9cff730202dc12f10a05f3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CorePHP\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU-3"
+            ],
+            "authors": [
+                {
+                    "name": "Eduardo Aguilar",
+                    "email": "eduardo.aguilar41@gmail.com"
+                }
+            ],
+            "description": "Nucleo del proyecto CorePHP",
+            "homepage": "https://github.com/danteay/CorePHPMapper",
+            "keywords": [
+                "mapper",
+                "orm",
+                "php"
+            ],
+            "time": "2016-03-20 04:32:33"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
