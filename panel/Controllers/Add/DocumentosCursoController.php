@@ -47,7 +47,7 @@ class DocumentosCursoController
                 if($this->curso->getItem($curso)){
                     $newname = $this->nameGenerate();
 
-                    if(move_uploaded_file($this->file['documento']['tmp_name'],"../../Repo/Documents/".$newname)){
+                    if(move_uploaded_file($this->file['documento']['tmp_name'], __DIR__."/../../Repo/Documents/".$newname)){
                         $insert = array(
                             "curso" => $curso,
                             "titulo" => $titulo,
