@@ -42,7 +42,7 @@ class DocumentosCursoController
         print_r($this->file);
         print_r($this->data);
 
-        if(isset($curso) && is_numeric($curso) && isset($titulo) && !empty($titulo) && !empty($this->file['documento']['name'])){
+        if(isset($curso) && is_numeric($curso) && isset($titulo) && !empty($titulo) && !empty($this->file['documento']['name'])){  
             try{
                 if($this->curso->getItem($curso)){
                     $newname = $this->nameGenerate();
