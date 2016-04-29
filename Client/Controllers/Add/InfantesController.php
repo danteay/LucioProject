@@ -8,6 +8,7 @@ include __DIR__."/../../Models/json.php";
 use CorePHP\Core\MailUtils;
 use CorePHP\Models\Infantes;
 use Client\Models\JSONResponse;
+use CorePHP\Core\SessionUtils;
 
 header('Content-Type: application/json');
 
@@ -30,9 +31,10 @@ class InfantesController
   {
     try {
       if ($this->validate()) {
+        $sess = new SessionUtils();
         $this->_data['hashcode'] = uniqid();
-        $this->_response = new JSONResponse(true, [['mensaje',$this->_data]]);
-        //$this->_instance->insertItem($this->_data);
+        $this->_data['tutor'] = $_SESSION["padre"]["id"];
+        $this->_instance->insertItem($this->_data);
       } else {
         $this->_response = new JSONResponse(false, [['Error',$this->_message]]);
       }
@@ -49,7 +51,7 @@ class InfantesController
   private function validate()
   {
     try {
-      if(($this->validate_post(['nombre','paterno','materno','cursos','permiso']))[0]){
+      if($this->validate_post(['nombre','paterno','materno','permiso'])){
         return true;
       }
       else{
@@ -66,14 +68,14 @@ class InfantesController
     foreach ($nombres as $nombre) {
       if(array_key_exists($nombre,$_POST)){
         if (empty($_POST[$nombre])) {
-          $error[] = $nombre." vacio";
+          $error[] = "falta ".$nombre;
         }
       } else{
         $error[] = $nombre." no existe";
       }
     }
     $this->_message = implode($error);
-    return sizeof($error);
+    return !sizeof($error);
   }
 }
 if($_POST){

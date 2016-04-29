@@ -41,10 +41,10 @@ class PadresController
     if(empty($this->_message)){
       $sess = new SessionUtils();
       $sess->padre = array(
-        "id" => md5($this->_instance->idPadre),
+        "id" => $this->_instance->idPadre,
         "correo" => $this->_instance->correo
       );
-      $this->_response = new JSONResponse(true, [['sesion',$_SESSION["padre"]["id"]],['login', 'Views/Tutor']]);
+      $this->_response = new JSONResponse(true, [['sesion',md5($_SESSION["padre"]["id"])],['login', 'Views/Tutor'],['query','#username',$this->_instance->nombre]]);
     }else{
       $this->_response = new JSONResponse(false, [['Error '.$this->_message]]);
     }

@@ -8,7 +8,7 @@ function ProcesaSolicitud(solicitud){
   for (argumento of solicitud) {
     let funcion = funciones.get(argumento[0]);
     if(funcion != undefined){
-      funcion(argumento[1]);
+      funcion(argumento);
     }
     else{
       ShowMessage(argumento);
@@ -16,16 +16,27 @@ function ProcesaSolicitud(solicitud){
   }
 }
 function ShowMessage (mensaje) {
-  Materialize.toast(mensaje, 2000);
+  Materialize.toast(mensaje[1], 2000);
 }
-function LoginAJAX (contenido) {
-  window.location = contenido;
+function LoginAJAX (ruta) {
+  window.location = ruta[1];
 }
 function LoadAJAX (contenido) {
-
+  contenedor = document.querySelector(contenido[1]);
+  if(contenedor != undefined){
+    if(contenido[3]){
+      contenedor.insertAdjacentHTML(contenido[3], contenido[2]);
+    }
+    else{
+      contenedor.innerHTML = contenido[2];
+    }
+  }
+  else{
+    console.log("Error [LoadAJAX]: Selector incorrecto");
+  }
 }
 function InitSession(objeto){
-  sessionStorage.setItem("idSession",objeto);
+  sessionStorage.setItem("idSession",objeto[1]);
 }
 function SolicitudAjax (ruta, metodo, parametros, funcion, header) {
   if(ruta && metodo && parametros){
@@ -130,6 +141,9 @@ function ProcesaFormularioAJAX (idFormulario, tipoInput, url, metodo, funcion, h
                 if(nombreInput = inputIt.name){
                   if(inputIt.checked == true){
                     parametros += nombreInput + "=" + inputIt.value;
+                  }
+                  else{
+                    parametros += nombreInput + "=";
                   }
                 }
                 else{
