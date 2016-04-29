@@ -70,7 +70,30 @@ class Padres extends ModelDefinition {
         }
     }
 
-    
+    public function getItemByUser($user)
+    {
+        $query = $this->query->queryList['Padres']['getItemByUser'];
+        $data = array(
+            "[[user]]" => $user
+        );
+
+        $this->conx->initializeQuery($query, $data);
+        try{
+            $result = $this->conx->getRequest();
+        }catch(\Exception $e){
+            throw new \Exception($e);
+        }
+
+        if($result = $result->fetch_assoc()){
+            foreach($result as $key => $value){
+                $this->$key = $value;
+            }
+            
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     public function getAllItems()
     {

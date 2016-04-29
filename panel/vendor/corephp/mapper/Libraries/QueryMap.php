@@ -91,7 +91,7 @@ class QueryMap
             "insertItem" => "INSERT INTO Infantes (nombre,paterno,materno,tutor,hashcode) VALUES ('[[nombre]]','[[paterno]]','[[materno]]',[[tutor]],'[[hashcode]]')",
             "updateItem" => "UPDATE Infantes SET [[data]] WHERE idInfante = [[id]]",
             "deleteItem" => "DELETE FROM Infantes WHERE idInfante = [[id]]",
-            "getLastItem" => "SELECT MAX(idInfante) AS 'last' FROM Infantes"
+            "getLastItem" => "SELECT MAX(idInfante) AS 'last' FROM Infantes",
         );
     }
 
@@ -125,6 +125,7 @@ class QueryMap
         $this->queryList['Padres'] = array(
             "getItem" => "SELECT * FROM Padres WHERE idPadre = [[id]]",
             "getAllItems" => "SELECT * FROM Padres",
+            "getItemByUser" => "SELECT * FROM Padres WHERE correo = '[[user]]'",
             "insertItem" => "INSERT INTO Padres (nombre,paterno,materno,correo,passwd) VALUES ('[[nombre]]','[[paterno]]','[[materno]]','[[correo]]','[[passwd]]')",
             "updateItem" => "UPDATE Padres SET [[data]] WHERE idPadre = [[id]]",
             "deleteItem" => "DELETE FROM Padres WHERE idPadre = [[id]]",
