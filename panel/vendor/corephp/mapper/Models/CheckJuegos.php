@@ -79,6 +79,22 @@ class CheckJuegos extends ModelDefinition {
         }
     }
 
+    public function getAllItemsByInfante($id)
+    {
+        $query = $this->query->queryList['CheckJuegos']['getAllItemsByInfante'];
+        $insert = array(
+            "[[id]]" => $id
+        );
+
+        $this->conx->initializeQuery($query,$insert);
+        try{
+            $result = $this->conx->getRequest();
+            return $result;
+        }catch(\Exception $e){
+            throw new \Exception($e);
+        }
+    }
+
     public function insertItem(array $data)
     {
         extract($data);

@@ -38,11 +38,7 @@ class DocumentosCursoController
         extract($this->data);
         $message = null;
 
-        echo "<pre>";
-        print_r($this->file);
-        print_r($this->data);
-
-        if(isset($curso) && is_numeric($curso) && isset($titulo) && !empty($titulo) && !empty($this->file['documento']['name'])){  
+        if(isset($curso) && is_numeric($curso) && isset($titulo) && !empty($titulo) && !empty($this->file['documento']['name'])){
             try{
                 if($this->curso->getItem($curso)){
                     $newname = $this->nameGenerate();
@@ -69,9 +65,9 @@ class DocumentosCursoController
         }
 
         if(empty($message)){
-            #header("Location: ../../Views/Details/Cursos.php?id=".$curso);
+            header("Location: ../../Views/Details/Cursos.php?id=".$curso);
         }else{
-            #header("Location: ../../Views/Add/DocumentosCurso.php?curso=".$curso."&error=".$message);
+            header("Location: ../../Views/Add/DocumentosCurso.php?curso=".$curso."&error=".$message);
         }
     }
 
