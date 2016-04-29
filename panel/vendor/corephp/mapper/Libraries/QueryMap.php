@@ -30,7 +30,8 @@ class QueryMap
             "insertItem" => "INSERT INTO CheckDocumentos (documento,infante) VALUES ([[documento]],[[infante]])",
             "updateItem" => "UPDATE CheckDocumentos SET [[data]] WHERE idCheckDocumento = [[id]]",
             "deleteItem" => "DELETE FROM CheckDocumentos WHERE idCheckDocumento = [[id]]",
-            "getLastItem" => "SELECT MAX(idCheckDocumento) AS 'last' FROM CheckDocumentos"
+            "getLastItem" => "SELECT MAX(idCheckDocumento) AS 'last' FROM CheckDocumentos",
+            "getAllItemsByInfante" => "SELECT * FROM CheckDocumentos WHERE infante = [[id]]"
         );
     }
 
@@ -42,7 +43,8 @@ class QueryMap
             "insertItem" => "INSERT INTO CheckJuegos (juego,infante) VALUES ([[juego]],[[infante]])",
             "updateItem" => "UPDATE CheckJuegos SET [[data]] WHERE idCheckJuego = [[id]]",
             "deleteItem" => "DELETE FROM CheckJuegos WHERE idCheckJuego = [[id]]",
-            "getLastItem" => "SELECT MAX(idCheckJuego) AS 'last' FROM CheckJuegos"
+            "getLastItem" => "SELECT MAX(idCheckJuego) AS 'last' FROM CheckJuegos",
+            "getAllItemsByInfante" => "SELECT * FROM CheckJuegos WHERE infante = [[id]]"
         );
     }
 
@@ -54,7 +56,8 @@ class QueryMap
             "insertItem" => "INSERT INTO CheckVideos (video,infante) VALUES ([[video]],[[infante]])",
             "updateItem" => "UPDATE CheckVideos SET [[data]] WHERE idCheckVideo = [[id]]",
             "deleteItem" => "DELETE FROM CheckVideos WHERE idCheckVideo = [[id]]",
-            "getLastItem" => "SELECT MAX(idCheckVideo) AS 'last' FROM CheckVideos"
+            "getLastItem" => "SELECT MAX(idCheckVideo) AS 'last' FROM CheckVideos",
+            "getAllItemsByInfante" => "SELECT * FROM CheckVideos WHERE infante = [[id]]"
         );
     }
 
@@ -92,6 +95,7 @@ class QueryMap
             "updateItem" => "UPDATE Infantes SET [[data]] WHERE idInfante = [[id]]",
             "deleteItem" => "DELETE FROM Infantes WHERE idInfante = [[id]]",
             "getLastItem" => "SELECT MAX(idInfante) AS 'last' FROM Infantes",
+            "getAllItemsByTutor" => "SELECT * FROM Infantes WHERE tutor = [[id]]"
         );
     }
 
@@ -103,7 +107,9 @@ class QueryMap
             "insertItem" => "INSERT INTO InscritosCurso (curso,infante) VALUES ([[curso]],[[infante]])",
             "updateItem" => "UPDATE InscritosCurso SET [[data]] WHERE idInscritoCurso = [[id]]",
             "deleteItem" => "DELETE FROM InscritosCurso WHERE idInscritoCurso = [[id]]",
-            "getLastItem" => "SELECT MAX(idInscritoCurso) AS 'last' FROM InscritosCurso"
+            "getLastItem" => "SELECT MAX(idInscritoCurso) AS 'last' FROM InscritosCurso",
+            "getAllItemsByCurso" => "SELECT * FROM Infantes WHERE tutor = [[id]]",
+            "getAllItemsByInfante" => "SELECT * FROM Infantes WHERE tutor = [[id]]"
         );
     }
 
@@ -129,7 +135,7 @@ class QueryMap
             "insertItem" => "INSERT INTO Padres (nombre,paterno,materno,correo,passwd) VALUES ('[[nombre]]','[[paterno]]','[[materno]]','[[correo]]','[[passwd]]')",
             "updateItem" => "UPDATE Padres SET [[data]] WHERE idPadre = [[id]]",
             "deleteItem" => "DELETE FROM Padres WHERE idPadre = [[id]]",
-            "getLastItem" => "SELECT MAX(idPadre) AS 'last' FROM Padres"
+            "getLastItem" => "SELECT MAX(idPadre) AS 'last' FROM Padres",
         );
     }
 
@@ -145,6 +151,4 @@ class QueryMap
             "getAllItemsByCurso" => "SELECT * FROM VideosCurso WHERE curso = [[id]]"
         );
     }
-
-    /*add-function-model*/
 }

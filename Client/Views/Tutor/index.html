@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link href='https://fonts.googleapis.com/css?family=Patrick+Hand' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="../../vendor/Materialize/dist/css/materialize.min.css">
+	<link rel="stylesheet" href="../../css/all.css">
+	<link rel="stylesheet" href="../../css/tutor.css">
+	<script type="text/javascript" src="../../js/ajax.js"></script>
+	<script type="text/javascript" src="../../js/sesion.js"></script>
+</head>
+<body>
+	<div class="row red darken-3 top-bar">
+		<div class="container">
+			<nav class="transparent">
+				<ul id="dropdown1" class="dropdown-content">
+					<li><a href="#!">one</a></li>
+					<li><a href="#!">two</a></li>
+					<li class="divider"></li>
+					<li class="cont-inline mid">
+						<a href="#!">
+							<i class="material-icons">power_settings_new</i> Salir
+						</a>
+					</li>
+				</ul>
+				<div class="nav-wrapper">
+					<a href="#!" class="brand-logo">Logo</a>
+					<ul class="right hide-on-med-and-down">
+						<li class="cont-inline mid padd-h-10 disable">
+							<i class="material-icons">perm_identity</i>
+							<h4>Usuario</h4>
+						</li>
+						<li>
+							<a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons">more_vert</i></a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
+	<main class="fondo-img">
+		<div class="container section">
+			<div class="row">
+				<div class="col l12">
+					<div class="row">
+						<div class="col l12">
+							<ul class="tabs" id="tutor-tabs">
+								<li class="tab col l4 ">
+									<a class=" active indigo-text text-darken-4" href="#test1">
+										<i class="material-icons">face</i> 
+										<p>Infantes</p>
+									</a>
+								</li>
+								<li class="tab col l4 ">
+									<a class="indigo-text text-darken-4" href="#test2">
+										<i class="material-icons">assignment</i>
+										<p>Progresos</p>
+									</a>
+								</li>
+								<li class="tab col l4 ">
+									<a class="indigo-text text-darken-4" href="#test3">
+										<i class="material-icons">school</i>
+										<p>Cursos</p>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div id="test1" class="col l12 tab-content-tutor">
+							<ul class="collapsible" data-collapsible="accordion">
+						    <li>
+						      <div class="collapsible-header">
+						      	<i class="material-icons">person_add</i>Agregar infante
+						      </div>
+						      <div class="collapsible-body">
+						      	<div class="row texto">
+						      		<div id="agregar-inf" class="col l12">
+									      <div class="row">
+									        <div class="input-field col l4">
+									          <input id="nombre" name="nombre" type="text" class="grey-text text-darken-3 validate">
+									          <label class="grey-text text-darken-3" for="nombre">Nombre (s)</label>
+									        </div>
+									        <div class="input-field col l4">
+									          <input id="a_paterno" name="paterno" type="text" class="grey-text text-darken-3 validate">
+									          <label class="grey-text text-darken-3" for="a_paterno">Apellido Paterno</label>
+									        </div>
+									        <div class="input-field col l4">
+									          <input id="a_materno" name="materno" type="text" class="grey-text text-darken-3 validate">
+									          <label class="grey-text text-darken-3" for="a_materno">Apellido Materno</label>
+									        </div>
+									      </div>
+									      <div class="row">
+									      	<div class="input-field col l12">
+												    <select id ="select" multiple class="grey-text text-darken-3" name="cursos">
+												      <option value="" disabled selected>Cursos inscritos</option>
+												      <option value="1">Curso 1 - Descripción del curso</option>
+												      <option value="2">Curso 2 - Descripción del curso</option>
+												      <option value="3">Curso 3 - Descripción del curso</option>
+												    </select>
+												    <label class="grey-text text-darken-3">Agregar a curso</label>
+												  </div>	
+									      </div>
+									      <div class="row">
+													<p>
+											      <input type="checkbox" class="filled-in" id="permiso" name="permiso">
+											      <label for="permiso">Acepto la resposabilidad por los menores que registro y concedo su acceso a la plataforma</label>
+											    </p>
+												</div>
+									      <div class="row">
+								      	<div class="col l12 right-align">
+								      		<a class="waves-effect waves-light btn" onclick="ProcesaFormularioAJAX('#agregar-inf', 'normal','../../Controllers/Add/InfantesController.php','POST')">Registrar</a>
+								      	</div>
+								      </div>		      
+								    </div>
+						      	</div>
+						      </div>
+						    </li>
+						   </ul>
+				      <table class="highlight grey-text white text-darken-3">
+				        <thead>
+				          <tr>
+				              <th data-field="t-name">Nombre</th>
+				              <th data-field="t-ap">Apellido Paterno</th>
+				              <th data-field="t-am">Apellido Materno</th>
+				              <th data-field="t-crs">Cursos</th>
+				              <th data-field="t-lk">Link de acceso </th>
+				          </tr>
+				        </thead>
+
+				        <tbody>
+				          <tr>
+				            <td>Alvin</td>
+				            <td>Eclair</td>
+				            <td>$0.87</td>
+				            <td>
+				            	<a href="">Curso 1</a>, <a href="">Curso 2</a>, etc ...
+				            </td>
+				            <td>
+				            	<a href="">adassdasdasd/asdasdsad</a>
+				            </td>
+				          </tr>
+				          <tr>
+				            <td>Alan</td>
+				            <td>Jellybean</td>
+				            <td>$3.76</td>
+				            <td>
+				            	<a href="">Curso 1</a>, <a href="">Curso 2</a>, etc ...
+				            </td>
+				            <td>
+				            	<a href="">adassdasdasd/asdasdsad</a>
+				            </td>
+				          </tr>
+				          <tr>
+				            <td>Jonathan</td>
+				            <td>Lollipop</td>
+				            <td>$7.00</td>
+				            <td>
+				            	<a href="">Curso 1</a>, <a href="">Curso 2</a>, etc ...
+				            </td>
+				            <td>
+				            	<a href="">adassdasdasd/asdasdsad</a>
+				            </td>
+				          </tr>
+				        </tbody>
+				      </table>
+           
+						</div>
+						<div id="test2" class="col l12 tab-content-tutor">
+							<div class="divider"></div>
+							<div class="section white texto">
+								<h5 class="center-align">Nivel promedio</h5>
+								<p>
+									El nivel de progreso que los infantes tienen por curso se pormedia para dar un valor general, que se expresa mediante la siguiente tabla de valores.
+								</p>
+								<ul>
+									<li class="cont-inline mid">
+										<i class="material-icons green-text">sentiment_satisfied</i>
+										<span>90% - 100% del material revisado</span>
+									</li>
+									<li class="cont-inline mid">
+										<i class="material-icons blue-text">sentiment_neutral</i>
+										<span>65% - 89% del material revisado</span>
+									</li>
+									<li class="cont-inline mid">
+										<i class="material-icons lime-text">sentiment_dissatisfied</i>
+										<span>40% - 64% del material revisado</span>
+									</li>
+									<li class="cont-inline mid">
+										<i class="material-icons red-text">sentiment_very_dissatisfied</i>
+										<span>0% - 39% del material revisado</span>
+									</li>
+								</ul>
+							</div>
+						  <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
+						    <li>
+						      <div class="collapsible-header waves-effect waves-green">
+							      <div class="row cont-inline mid">
+							      	<div class="col l4">
+					      				<i class="material-icons green-text">sentiment_satisfied</i>
+						      			<span class="titulo-collapsible-header">Nombre ApellidoP ApeliidoM</span>
+						      		</div>
+						      		<div class="col l7">								      			
+											  <div class="progress">
+											      <div class="determinate green" style="width: 90%"></div>
+											  </div>        
+						      		</div>
+						      		<div class="col l1">
+						      			90%
+						      		</div>
+							      </div>						      	
+						      </div>	
+						      <div class="collapsible-body">						      		
+								    <ul class="collection">
+								      <li class="collection-item">Curso X 
+								      	<span class="badge">
+								      		<i class="material-icons">radio_button_checked</i>
+								      	</span>
+								      </li>
+								      <li class="collection-item">Curso X 
+								      	<span class="badge">
+								      		<i class="material-icons">radio_button_checked</i>
+								      	</span>
+								      </li>
+								      <li class="collection-item">Curso X 
+								      	<span class="badge">
+								      		<i class="material-icons">radio_button_checked</i>
+								      	</span>
+								      </li>
+								      <li class="collection-item">Curso X 
+								      	<span class="badge">
+								      		<i class="material-icons">radio_button_unchecked</i>
+								      	</span>
+								      </li>
+								    </ul>            
+						      </div>					 
+						    </li>
+						    <li>
+						      <div class="collapsible-header waves-effect waves-blue">
+						      	<div class="row cont-inline mid">
+							      	<div class="col l4">					      				
+						      			<i class="material-icons blue-text">sentiment_neutral</i>						      	
+						      			<span class="titulo-collapsible-header">Nombre ApellidoP ApeliidoM</span>
+						      		</div>
+						      		<div class="col l7">								      			
+											  <div class="progress">
+											      <div class="determinate blue" style="width: 70%"></div>
+											  </div>        
+						      		</div>
+						      		<div class="col l1">
+						      			70%
+						      		</div>
+							      </div>
+						      </div>
+						      <div class="collapsible-body">						      		
+								    <ul class="collection">
+								      <li class="collection-item">Curso X 
+								      	<span class="badge">
+								      		<i class="material-icons">radio_button_checked</i>
+								      	</span>
+								      </li>
+								      <li class="collection-item">Curso X 
+								      	<span class="badge">
+								      		<i class="material-icons">radio_button_unchecked</i>
+								      	</span>
+								      </li>
+								      <li class="collection-item">Curso X 
+								      	<span class="badge">
+								      		<i class="material-icons">radio_button_checked</i>
+								      	</span>
+								      </li>
+								      <li class="collection-item">Curso X 
+								      	<span class="badge">
+								      		<i class="material-icons">radio_button_unchecked</i>
+								      	</span>
+								      </li>
+								    </ul>            
+						      </div>
+						    </li>
+						    <li>
+						      <div class="collapsible-header waves-effect waves-lime">
+						      	<div class="row cont-inline mid">
+							      	<div class="col l4">					      				
+						      			<i class="material-icons lime-text">sentiment_dissatisfied</i>						      	
+						      			<span class="titulo-collapsible-header">Nombre ApellidoP ApeliidoM</span>
+						      		</div>
+						      		<div class="col l7">								      			
+											  <div class="progress">
+											      <div class="determinate lime" style="width: 50%"></div>
+											  </div>        
+						      		</div>
+						      		<div class="col l1">
+						      			50%
+						      		</div>
+							      </div>
+						      </div>
+						      <div class="collapsible-body">						      		
+								    <ul class="collection">
+								      <li class="collection-item">Curso X 
+								      	<span class="badge">
+								      		<i class="material-icons">radio_button_unchecked</i>
+								      	</span>
+								      </li>
+								      <li class="collection-item">Curso X 
+								      	<span class="badge">
+								      		<i class="material-icons">radio_button_checked</i>
+								      	</span>
+								      </li>
+								      <li class="collection-item">Curso X 
+								      	<span class="badge">
+								      		<i class="material-icons">radio_button_unchecked</i>
+								      	</span>
+								      </li>
+								      <li class="collection-item">Curso X 
+								      	<span class="badge">
+								      		<i class="material-icons">radio_button_unchecked</i>
+								      	</span>
+								      </li>
+								    </ul>            
+						      </div>
+						    </li>
+						    <li>
+						      <div class="collapsible-header waves-effect waves-red">
+						      	<div class="row cont-inline mid">
+							      	<div class="col l4">					      				
+						      			<i class="material-icons red-text">sentiment_very_dissatisfied</i>						      	
+						      			<span class="titulo-collapsible-header">Nombre ApellidoP ApeliidoM</span>
+						      		</div>
+						      		<div class="col l7">								      			
+											  <div class="progress">
+											      <div class="determinate red" style="width: 20%"></div>
+											  </div>        
+						      		</div>
+						      		<div class="col l1">
+						      			20%
+						      		</div>
+							      </div>
+						      </div>
+						      <div class="collapsible-body">						      		
+								    <ul class="collection">
+								      <li class="collection-item">Curso X 
+								      	<span class="badge">
+								      		<i class="material-icons">radio_button_unchecked</i>
+								      	</span>
+								      </li>
+								      <li class="collection-item">Curso X 
+								      	<span class="badge">
+								      		<i class="material-icons">radio_button_checked</i>
+								      	</span>
+								      </li>
+								      <li class="collection-item">Curso X 
+								      	<span class="badge">
+								      		<i class="material-icons">radio_button_checked</i>
+								      	</span>
+								      </li>
+								      <li class="collection-item">Curso X 
+								      	<span class="badge">
+								      		<i class="material-icons">radio_button_unchecked</i>
+								      	</span>
+								      </li>
+								    </ul>            
+						      </div>
+						    </li>
+						  </ul>
+						</div>
+						<div id="test3" class="col l12 tab-content-tutor">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer class="page-footer blue darken-3">
+	  <div class="container">
+	    <div class="row">
+	      <div class="col l6">
+	        <h5 class="white-text">Footer Content</h5>
+	        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+	      </div>
+	      <div class="col l4 offset-l2 ">
+	        <h5 class="white-text">Links</h5>
+	        <ul>
+	          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+	          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+	          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+	          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="footer-copyright blue darken-4">
+	    <div class="container">
+	    © 2014 Copyright Text
+	    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+	    </div>
+	  </div>
+	</footer>
+	<script type="text/javascript" src="../../vendor/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../../vendor/Materialize/dist/js/materialize.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('select').material_select();
+		});
+	</script>
+</body>
+</html>
