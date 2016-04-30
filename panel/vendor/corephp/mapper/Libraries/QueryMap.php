@@ -131,11 +131,11 @@ class QueryMap
         $this->queryList['Padres'] = array(
             "getItem" => "SELECT * FROM Padres WHERE idPadre = [[id]]",
             "getAllItems" => "SELECT * FROM Padres",
+            "getItemByUser" => "SELECT * FROM Padres WHERE correo = '[[user]]'",
             "insertItem" => "INSERT INTO Padres (nombre,paterno,materno,correo,passwd) VALUES ('[[nombre]]','[[paterno]]','[[materno]]','[[correo]]','[[passwd]]')",
             "updateItem" => "UPDATE Padres SET [[data]] WHERE idPadre = [[id]]",
             "deleteItem" => "DELETE FROM Padres WHERE idPadre = [[id]]",
             "getLastItem" => "SELECT MAX(idPadre) AS 'last' FROM Padres",
-            "getItemByUser" => "SELECT * FROM Padres WHERE coreo = [[user]]"
         );
     }
 
@@ -151,6 +151,4 @@ class QueryMap
             "getAllItemsByCurso" => "SELECT * FROM VideosCurso WHERE curso = [[id]]"
         );
     }
-
-    /*add-function-model*/
 }

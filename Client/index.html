@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href='https://fonts.googleapis.com/css?family=Patrick+Hand' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="vendor/Materialize/dist/css/materialize.min.css">
+		<link rel="stylesheet" href="css/all.css">
+		<link rel="stylesheet" href="css/index.css">
+		<script type="text/javascript" src="js/ajax.js"></script>
+		<script type="text/javascript" src="js/sesion.js"></script>
+	</head>
+	<body>
+		<main>
+		<div class="parallax-container">
+			<div class="parallax">
+				<img src="img/6.jpg" style="opacity: 0.4;">
+			</div>
+			<div class="valign-wrapper all ">
+				<div class=" valign row center-align">
+					<h1 class="center gigante">Bienvenido</h1>
+					<div class="row">						
+						<div id="login" >
+							<div class="row texto">
+								<div class="col l12 black-text">
+									<h4>Si tienes cuenta inicia sesión</h4>
+								</div>
+							</div>
+							<div class="row left-align">
+								<div class="input-field col l6">
+									<input placeholder="Email" id="email" name="correo" type="email" class="validate black-text" required>			
+								</div>
+								<div class="input-field col l6">
+									<input placeholder="Contraseña" name="passwd" id="password" type="password" class="validate black-text" required>	
+								</div>
+							</div>
+							<div class="row">
+								<div class="col l12 center-align">
+									<button class="btn waves-effect white black-text" type="submit" name="action" onclick="ProcesaFormularioAJAX('#login', 'normal', 'Controllers/PadresLoginController.php','POST')">Ingresar
+								    <i class="material-icons right">send</i>
+								  </button>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<i class="material-icons center gigante pulso" id="flecha">arrow_downward</i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="parallax-container" id="scroll-fire">
+			<div class="parallax">
+				<img src="img/7.jpg">
+			</div>
+			<div class="valign-wrapper all ">
+				<div class="row">
+					<ul id="presentacion" class="white-text">
+						<li class="row center-align">
+							<h1>PRESENTAMOS TITULO</h1>
+						</li>
+						<li>
+							<div class="col l4 center-align">
+								<i class="material-icons gigante">view_list</i>
+								<h4>Cursos disponibles</h4>
+								<p>Revisa nuestra lista de cursos, su descripción y su temario</p>
+							</div>
+						</li>
+						<li>
+							<div class="col l4 center-align">
+								<i class="material-icons gigante">security</i>
+								<h4>Tienes el control de que ven tus hijos</h4>
+								<p>Asigna los cursos, ve sus avances y revisa el material antes de que ellos lo vean</p>
+							</div>
+						</li>
+						<li>
+							<div class="col l4 center-align">
+								<i class="material-icons gigante">face</i>
+								<h4>Material multimedia</h4>
+								<p>El aprendizaje es natural a base de Documentos, Videos y Juegos</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="parallax-container">
+			<div class="parallax">
+				<img src="img/school and education 03.jpg" style="opacity: 0.3">
+			</div>
+			<div class="container">
+				<div class="section">
+					<div class="row ">
+						<h1 class="center">Registrate</h1>
+						<h5>Por favor llena el siguiente formulario para continuar</h5>
+						<div id="registro-padre" class="col l12">
+							<div class="row">
+								<div class="input-field col l4">
+									<input id="nombre" name="nombre" type="text" class="grey-text text-darken-3 validate" required>
+									<label class="grey-text text-darken-3" for="first_name">Nombre (s)</label>
+								</div>
+								<div class="input-field col l4">
+									<input id="paterno" name="paterno" type="text" class="grey-text text-darken-3 validate" required>
+									<label class="grey-text text-darken-3" for="last_name">Apellido Paterno</label>
+								</div>
+								<div class="input-field col l4">
+									<input id="materno" name="materno" type="text" class="grey-text text-darken-3 validate" required>
+									<label class="grey-text text-darken-3" for="last_name">Apellido Materno</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col l6">
+									<input id="correo" name="correo" type="email" class=" grey-text text-darken-3 validate" required>
+									<label class="grey-text text-darken-3 validate" for="email" data-error="Correo Incorrecto" data-success="Correo Valido">Email</label>
+								</div>
+								<div class="input-field col l6">
+									<input id="passwd" name="passwd" type="password" class=" grey-text text-darken-3 validate" required>
+									<label class="grey-text text-darken-3 validate" for="password">Contraseña</label>
+								</div>
+							</div>							
+							<div class="row ">
+								<div class="col l12 center-align">
+									<button class="btn waves-effect waves-light" name="action" onclick="ProcesaFormularioAJAX('#registro-padre', 'normal', 'Controllers/Add/PadresController.php','POST')">Registrarme y entrar
+									<i class="material-icons right">send</i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</main>
+		<script type="text/javascript" src="vendor/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="vendor/Materialize/dist/js/materialize.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				$('.parallax').parallax();
+			});
+			var options = [
+				{
+					selector: '#scroll-fire',
+					offset: 500,
+					callback: function() {
+						Materialize.showStaggeredList("#presentacion");
+					}
+				}
+			];
+		Materialize.scrollFire(options);
+		</script>
+	</body>
+</html>

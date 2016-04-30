@@ -70,9 +70,6 @@ class Padres extends ModelDefinition implements AdminDefinition{
             return false;
         }
     }
-
-    
-
     public function getAllItems()
     {
         $query = $this->query->queryList['Padres']['getAllItems'];
@@ -182,7 +179,7 @@ class Padres extends ModelDefinition implements AdminDefinition{
      */
     public function getItemByUser($user)
     {
-        $query = $this->query->queryList['Padres']['getItem'];
+        $query = $this->query->queryList['Padres']['getItemByUser'];
         $data = array(
             "[[user]]" => $user
         );
