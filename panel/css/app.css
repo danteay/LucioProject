@@ -26,3 +26,15 @@ main{
     bottom: 0;
     margin: auto;
 }
+
+blockquote {
+    border-left: 0.3rem solid #2199E8;
+    background: #E6E6E6;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 1rem 1.5rem;
+    color: #000;
+}
+blockquote *:last-child {
+    margin: 0;
+}
