@@ -76,7 +76,7 @@ class PadresController
           $code .= "<td>".$inf->paterno."</td>";
           $code .= "<td>".$inf->materno."</td>";
           $code .= "<td>".$inf->idInfante."</td>";
-          $code .= "<td><a href='/Client/Views/Infantes/".$inf->hashcode."'>/Client/Views/Infantes/".$inf->hashcode."</td>";
+          $code .= "<td><a href='/LucioProject/Client/Views/Infante/!".$inf->hashcode."'>/LucioProject/Client/Views/Infante/!".$inf->hashcode."</td>";
           $code .= "</tr>";
         }
         break;
