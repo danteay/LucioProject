@@ -4,11 +4,13 @@ namespace Client\Controllers;
 
 require_once __DIR__."/../../panel/vendor/autoload.php";
 include __DIR__."/../Models/json.php";
+include __DIR__."/Details/PadresController.php";
 
 use CorePHP\Core\MailUtils;
 use CorePHP\Models\Padres;
 use Client\Models\JSONResponse;
 use CorePHP\Core\SessionUtils;
+use Client\Details\PadresController;
 
 header('Content-Type: application/json');
 

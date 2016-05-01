@@ -3,3 +3,4 @@ IndexIgnore *
 RewriteEngine on
 
 RewriteRule Client/Views/Infante/!(.+) Client/Views/Infante/index.php?id=$1
+RewriteRule ^/(.+) /LucioProject/$1

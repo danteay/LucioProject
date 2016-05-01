@@ -4,6 +4,7 @@ namespace Client\Controllers\Add;
 
 require_once __DIR__."/../../../panel/vendor/autoload.php";
 include __DIR__."/../../Models/json.php";
+include __DIR__."../Details/InfantesTutor.php";
 
 use CorePHP\Core\MailUtils;
 use CorePHP\Models\Padres;
@@ -44,7 +45,7 @@ class PadresController
         "id" => $this->_instance->idPadre,
         "correo" => $this->_instance->correo
       );
-      $this->_response = new JSONResponse(true, [['sesion',md5($_SESSION["padre"]["id"])],['login', 'Views/Tutor'],['query','#username',$this->_instance->nombre]]);
+      $this->_response = new JSONResponse(true, [['sesion',md5($_SESSION["padre"]["id"])],['login', 'Views/Tutor']]);
     }else{
       $this->_response = new JSONResponse(false, [['Error '.$this->_message]]);
     }
