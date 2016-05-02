@@ -90,12 +90,13 @@ class QueryMap
     {
         $this->queryList['Infantes'] = array(
             "getItem" => "SELECT * FROM Infantes WHERE idInfante = [[id]]",
-            "getAllItems" => "SELECT * FROM Infantes",
+            "getAllItems" => "SELECT * FROM Infantes ORDER BY idInfante DESC",
             "insertItem" => "INSERT INTO Infantes (nombre,paterno,materno,tutor,hashcode) VALUES ('[[nombre]]','[[paterno]]','[[materno]]',[[tutor]],'[[hashcode]]')",
             "updateItem" => "UPDATE Infantes SET [[data]] WHERE idInfante = [[id]]",
             "deleteItem" => "DELETE FROM Infantes WHERE idInfante = [[id]]",
             "getLastItem" => "SELECT MAX(idInfante) AS 'last' FROM Infantes",
-            "getAllItemsByTutor" => "SELECT * FROM Infantes WHERE tutor = [[id]]"
+            "getAllItemsByTutor" => "SELECT * FROM Infantes WHERE tutor = [[id]]",
+            "getLastItemByTutor" => "SELECT MAX(idInfante) AS nuevo FROM (SELECT * FROM Infantes WHERE tutor = [[id]]) as InfantesTutor"
         );
     }
 

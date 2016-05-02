@@ -101,6 +101,24 @@ class Infantes extends ModelDefinition {
         }
     }
 
+    public function getLastItemByTutor($id)
+    {
+        $query = $this->query->queryList['Infantes']['getLastItemByTutor'];
+        $data = array(
+            "[[id]]" => $id
+        );
+
+        $this->conx->initializeQuery($query, $data);
+        try{
+            $result = $this->conx->getRequest();
+            $result = $result->fetch_object();
+
+            return $result->nuevo;
+        }catch(\Exception $e){
+            throw new \Exception($e);
+        }
+    }
+
     public function insertItem(array $data)
     {
         extract($data);
