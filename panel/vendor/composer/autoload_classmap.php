@@ -36,4 +36,5 @@ return array(
     'CorePHP\\Models\\VideosCurso' => $vendorDir . '/corephp/mapper/Models/VideosCurso.php',
     'Parsedown' => $vendorDir . '/erusev/parsedown/Parsedown.php',
     'ParsedownTest' => $vendorDir . '/erusev/parsedown/test/ParsedownTest.php',
+    'Utils\\Validations' => $baseDir . '/Utils/Validations.php',
 );

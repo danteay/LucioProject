@@ -46,7 +46,6 @@ $flag = $instance->getItem($id);
                     <a href="#">Padres</a>
                     <ul class="menu vertical">
                         <li><a href="../Report/Padres.php">Ver Registrados</a></li>
-                        <li><a href="../Add/Padres.php">Agregar</a></li>
                     </ul>
                 </li>
                 <li>
@@ -144,7 +143,6 @@ $flag = $instance->getItem($id);
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th style="width:5%;">Edit</th>
                                                 <th style="width:5%;">ID</th>
                                                 <th>Titulo</th>
                                                 <th style="width: 5%">Preview</th>
@@ -157,11 +155,6 @@ $flag = $instance->getItem($id);
                                             ?>
 
                                                 <tr>
-                                                    <td style="text-align: center;">
-                                                        <a href="../Edit/DocumentosCurso.php?id=<?php echo $doc->idDocumentoCurso; ?>">
-                                                            <img src="../../img/edit.png" alt="Edit" style="width: 20px; height: auto;">
-                                                        </a>
-                                                    </td>
                                                     <td><?php echo $doc->idDocumentoCurso; ?></td>
                                                     <td><?php echo $doc->titulo; ?></td>
                                                     <td>
@@ -249,7 +242,6 @@ $flag = $instance->getItem($id);
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th style="width:5%;">Edit</th>
                                                 <th style="width:5%;">ID</th>
                                                 <th>Titulo</th>
                                                 <th style="width: 5%">Preview</th>
@@ -262,12 +254,7 @@ $flag = $instance->getItem($id);
                                             ?>
 
                                                 <tr>
-                                                    <td style="text-align: center;">
-                                                        <a href="../Edit/JuegosCurso.php?id=<?php echo $game->idJuegoCurso; ?>">
-                                                            <img src="../../img/edit.png" alt="Edit" style="width: 20px; height: auto;">
-                                                        </a>
-                                                    </td>
-                                                    <td><?php echo $game->idJuegocurso; ?></td>
+                                                    <td><?php echo $game->idJuegoCurso; ?></td>
                                                     <td><?php echo $game->titulo; ?></td>
                                                     <td>
                                                         <div class="row">

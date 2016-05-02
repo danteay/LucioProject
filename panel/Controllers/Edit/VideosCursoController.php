@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: eduardoay
- * Date: 30/04/16
- * Time: 11:58 PM
- */
 
 namespace Controllers\Edit;
 
