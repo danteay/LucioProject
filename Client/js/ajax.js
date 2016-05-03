@@ -2,7 +2,9 @@ var funciones = new Map();
   funciones.set("login", LoginAJAX);
   funciones.set("query", LoadAJAX);
   funciones.set("sesion", InitSession);
-  funciones.set('mensaje', ShowMessage);
+  funciones.set('mensaje', ShowMessageDin);
+  funciones.set('init-select',SelectInitialize);
+  funciones.set('update_infantes',LoadAJAXCondicional);
 
 function ProcesaSolicitud(solicitud){
   for (argumento of solicitud) {
@@ -11,12 +13,18 @@ function ProcesaSolicitud(solicitud){
       funcion(argumento);
     }
     else{
-      ShowMessage(argumento);
+      ShowMessage(argumento[1]);
     }
   }
 }
+function SelectInitialize (basura) { 
+  $('select').material_select();
+}
+function ShowMessageDin(mensaje){
+  ShowMessage(mensaje[1]);
+}
 function ShowMessage (mensaje) {
-  Materialize.toast(mensaje[1], 2000);
+  Materialize.toast(mensaje, 2000);
 }
 function LoginAJAX (ruta) {
   window.location = ruta[1];
@@ -24,8 +32,8 @@ function LoginAJAX (ruta) {
 function LoadAJAX (contenido) {
   contenedor = document.querySelector(contenido[1]);
   if(contenedor != undefined){
-    if(contenido[3]){
-      contenedor.insertAdjacentHTML(contenido[3], contenido[2]);
+    if(Array.isArray(contenido[2])){
+      contenedor.insertAdjacentHTML(contenido[2][1], contenido[2][0]);
     }
     else{
       contenedor.innerHTML = contenido[2];
@@ -35,8 +43,21 @@ function LoadAJAX (contenido) {
     console.log("Error [LoadAJAX]: Selector incorrecto");
   }
 }
+function LoadAJAXCondicional(id){
+  if((elemento = document.querySelector(id[1])) != undefined){
+    SolicitudAjax('../../Controllers/Details/PadresController.php','POST','type=#update_infantes&replace=1');
+  }
+  else{
+    SolicitudAjax('../../Controllers/Details/PadresController.php','POST','type=#update_infantes&replace=0');
+  }
+}
 function InitSession(objeto){
-  sessionStorage.setItem("idSession",objeto[1]);
+  if (objeto[1] != 'kill') {
+    sessionStorage.setItem("idSession",objeto[1]);
+  }
+  else{
+    sessionStorage.clear();
+  }
 }
 function SolicitudAjax (ruta, metodo, parametros, funcion, header) {
   if(ruta && metodo && parametros){
@@ -53,7 +74,7 @@ function SolicitudAjax (ruta, metodo, parametros, funcion, header) {
             ShowMessage(response._mensaje[0]);
           }
         }
-      };
+      }
       if(header == null){
         if (metodo == 'POST'){
           header = "application/x-www-form-urlencoded";
@@ -180,15 +201,26 @@ function ProcesaFormularioAJAX (idFormulario, tipoInput, url, metodo, funcion, h
             }
           }
         }
-        console.log('anteriores ', parametrosAnteriores);
-        console.log('parametros ', parametros);
         if(parametrosAnteriores != parametros){
           SolicitudAjax(url,metodo,parametros,funcion,header);
+          setTimeout(ClearForm(inputs), 1000);
         }
         else {
-          console.log("La carta!!!!")
+          console.log("La carta!!!!");
         }
       }
     }
   }
+}
+function ClearForm (arreglo) {
+  for (input of arreglo) {
+    if(input.type == "checkbox"){
+      if(input.checked){
+        input.checked = false;
+      }
+    }
+    else if(input.localName == "input"){
+      input.value = "";
+    }
+  } 
 }

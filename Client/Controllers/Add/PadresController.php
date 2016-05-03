@@ -3,8 +3,7 @@
 namespace Client\Controllers\Add;
 
 require_once __DIR__."/../../../panel/vendor/autoload.php";
-include __DIR__."/../../Models/json.php";
-include __DIR__."../Details/InfantesTutor.php";
+require_once __DIR__."/../../Models/json.php";
 
 use CorePHP\Core\MailUtils;
 use CorePHP\Models\Padres;
@@ -19,6 +18,7 @@ class PadresController
   private $_message;
   private $_instance;
   private $_response;
+  private $_session;
 
   public function __construct($data)
   {
@@ -26,31 +26,34 @@ class PadresController
     $this->_message = "";
     $this->_instance = new Padres();
     $this->_response = null;
+    $this->_session = new SessionUtils();
     $this->__init__();
   }
+
   private function __init__()
   {
     try {
       if ($this->validate()) {
         $this->_instance->insertItem($this->_data);
       } else {
-        $this->_response = new JSONResponse(false, [['error',$this->_message]]);
+        $this->_response = new JSONResponse(false, [['Error',$this->_message]]);
       }
     } catch (\Exception $e) {
       $this->_message = $e->getMessage();
     }
     if(empty($this->_message)){
-      $sess = new SessionUtils();
-      $sess->padre = array(
+      $this->_instance->getItemByUser($this->_data['correo']);
+      $this->_session->padre = array(
         "id" => $this->_instance->idPadre,
         "correo" => $this->_instance->correo
       );
-      $this->_response = new JSONResponse(true, [['sesion',md5($_SESSION["padre"]["id"])],['login', 'Views/Tutor']]);
+      $this->_response = new JSONResponse(true, [['sesion',md5($_SESSION["padre"]["id"])],['logn', 'Views/Tutor']]);
     }else{
       $this->_response = new JSONResponse(false, [['Error '.$this->_message]]);
     }
     echo json_encode($this->_response);
   }
+  
   private function validate()
   {
     extract($this->_data);

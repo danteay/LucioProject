@@ -2,4 +2,4 @@ IndexIgnore *
 
 RewriteEngine on
 
-RewriteRule Client/Views/Infante/!(.+) Client/Views/Infante/index.html?id=$1
+RewriteRule Client/Views/Infante/!(.+) Client/Views/Infante/index.php?id=$1

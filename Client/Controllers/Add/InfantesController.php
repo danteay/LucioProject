@@ -3,7 +3,7 @@
 namespace Client\Controllers\Add;
 
 require_once __DIR__."/../../../panel/vendor/autoload.php";
-include __DIR__."/../../Models/json.php";
+require_once __DIR__."/../../Models/json.php";
 
 use CorePHP\Core\MailUtils;
 use CorePHP\Models\Infantes;
@@ -35,16 +35,10 @@ class InfantesController
         $this->_data['hashcode'] = uniqid();
         $this->_data['tutor'] = $_SESSION["padre"]["id"];
         $this->_instance->insertItem($this->_data);
-      } else {
-        $this->_response = new JSONResponse(false, [['Error',$this->_message]]);
+        $this->_response = new JSONResponse(true, [['mensaje', 'Registro Exitoso'],['update_infantes','.tabla-vacia']]);
       }
     } catch (\Exception $e) {
       $this->_message = $e->getMessage();
-    }
-    if(empty($this->_message)){
-      $this->_response = new JSONResponse(true, [['mensaje', 'Registro Exitoso']]);
-    }else{
-      $this->_response = new JSONResponse(false, [['Error '.$this->_message]]);
     }
     echo json_encode($this->_response);
   }
@@ -74,7 +68,7 @@ class InfantesController
         $error[] = $nombre." no existe";
       }
     }
-    $this->_message = implode($error);
+    $this->_message = implode($error," ");
     return !sizeof($error);
   }
 }

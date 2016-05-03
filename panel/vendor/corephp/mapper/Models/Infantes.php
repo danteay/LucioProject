@@ -70,7 +70,54 @@ class Infantes extends ModelDefinition {
         }
     }
 
-    
+    public function getItemByHashcode($id)
+    {
+        $query = $this->query->queryList['Infantes']['getItemByHashcode'];
+        $data = array(
+            "[[id]]" => $id
+        );
+
+        $this->conx->initializeQuery($query, $data);
+        try{
+            $result = $this->conx->getRequest();
+        }catch(\Exception $e){
+            throw new \Exception($e);
+        }
+
+        if($result = $result->fetch_assoc()){
+            foreach($result as $key => $value){
+                $this->$key = $value;
+            }
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function getItemByTutor($id)
+    {
+        $query = $this->query->queryList['Infantes']['getItemByTutor'];
+        $data = array(
+            "[[id]]" => $id
+        );
+
+        $this->conx->initializeQuery($query, $data);
+        try{
+            $result = $this->conx->getRequest();
+        }catch(\Exception $e){
+            throw new \Exception($e);
+        }
+
+        if($result = $result->fetch_assoc()){
+            foreach($result as $key => $value){
+                $this->$key = $value;
+            }
+
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     public function getAllItems()
     {

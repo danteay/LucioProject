@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,30 +7,21 @@
 	<link href='https://fonts.googleapis.com/css?family=Patrick+Hand' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="../../vendor/Materialize/dist/css/materialize.min.css">	
 	<link rel="stylesheet" href="../../css/all.css">
+	<script type="text/javascript" src="../../js/sesion.js"></script>
+	<script type="text/javascript" src="../../js/ajax.js"></script>
+	<script type="text/javascript" src="../../js/infante.js"></script>
 </head>
 <body>
+
 	<div class="row red darken-3 top-bar">
 		<div class="container">
 			<nav class="transparent">
-				<ul id="dropdown1" class="dropdown-content">
-					<li><a href="#!">one</a></li>
-					<li><a href="#!">two</a></li>
-					<li class="divider"></li>
-					<li class="cont-inline mid">
-						<a href="#!">
-							<i class="material-icons">power_settings_new</i> Salir
-						</a>
-					</li>
-				</ul>
 				<div class="nav-wrapper">
 					<a href="#!" class="brand-logo">Logo</a>
 					<ul class="right hide-on-med-and-down">
 						<li class="cont-inline mid padd-h-10 disable">
 							<i class="material-icons">face</i>
-							<h4>Usuario</h4>
-						</li>
-						<li>
-							<a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons">more_vert</i></a>
+							<h5 id="username"></h5>
 						</li>
 					</ul>
 				</div>
@@ -41,7 +33,7 @@
 			<div class="row">
 				<div class="col m4">
 					<h4 class="red-text text-lighten-3">Cursos</h4>
-					<div class="collection">
+					<div class="collection" id="lista-cursos">
 						<a href="#!" class="collection-item">Curso 1 <span class="new badge blue">4</span></a>
 						<a href="#!" class="collection-item active blue darken-4">Curso 2 <span class="new badge amber darken-2 brown-text text-darken-3">4</span></a>
 						<a href="#!" class="collection-item">Curso 3 <span class="new badge blue">4</span></a>
