@@ -46,7 +46,6 @@ $flag = $instance->getItem($id);
                     <a href="#">Padres</a>
                     <ul class="menu vertical">
                         <li><a href="../Report/Padres.php">Ver Registrados</a></li>
-                        <li><a href="../Add/Padres.php">Agregar</a></li>
                     </ul>
                 </li>
                 <li>
@@ -87,30 +86,31 @@ $flag = $instance->getItem($id);
             <div class="row">
                 <div class="large-12 columns">
                     <h4>Descripción</h4>
-                    <hr>
                 </div>
             </div>
             <div class="row">
                 <div class="large-12 columns">
-                    <?php echo $instance->descripcion; ?>
+                    <blockquote>
+                        <?php echo $instance->descripcion; ?>
+                    </blockquote>
                 </div>
             </div>
-            <br><br>
         </section>
 
         <section>
             <div class="row">
                 <div class="large-12 columns">
                     <h4>Temario</h4>
-                    <hr>
                 </div>
             </div>
             <div class="row">
                 <div id="temario" class="large-12 columns">
-                    <?php
-                    $parser = new Parsedown();
-                    echo $parser->text($instance->temario);
-                    ?>
+                    <blockquote>
+                        <?php
+                        $parser = new Parsedown();
+                        echo $parser->text($instance->temario);
+                        ?>
+                    </blockquote>
                 </div>
             </div>
             <br><br>
@@ -143,10 +143,9 @@ $flag = $instance->getItem($id);
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th>Edit</th>
-                                                <th>ID</th>
+                                                <th style="width:5%;">ID</th>
                                                 <th>Titulo</th>
-                                                <th>Accion</th>
+                                                <th style="width: 5%">Preview</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -156,23 +155,13 @@ $flag = $instance->getItem($id);
                                             ?>
 
                                                 <tr>
-                                                    <td style="text-align: center;">
-                                                        <a href="../Edit/DocumentosCurso.php?id=<?php echo $doc->idDocumentoCurso; ?>">
-                                                            <img src="../../img/edit.png" alt="Edit" style="width: 20px; height: auto;">
-                                                        </a>
-                                                    </td>
                                                     <td><?php echo $doc->idDocumentoCurso; ?></td>
                                                     <td><?php echo $doc->titulo; ?></td>
                                                     <td>
                                                         <div class="row">
-                                                            <div class="large-6 columns">
+                                                            <div class="large-12 columns">
                                                                 <a target="_blank" href="../../Repo/Documents/<?php echo $doc->documento; ?>">
                                                                     <img src="../../img/preview.png" alt="View" style="width: 20px; height: auto;">
-                                                                </a>
-                                                            </div>
-                                                            <div class="large-6 columns">
-                                                                <a href="../../Controllers/Edit/DocumentosCurso.php?id=<?php echo $doc->idDocumentoCurso; ?>">
-                                                                    <img src="../../img/delete.png" alt="Delete" style="width: 20px; height: auto;">
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -199,10 +188,10 @@ $flag = $instance->getItem($id);
                                     <table>
                                         <thead>
                                         <tr>
-                                            <th>Edit</th>
-                                            <th>ID</th>
+                                            <th style="width:5%;">Edit</th>
+                                            <th style="width:5%;">ID</th>
                                             <th>Titulo</th>
-                                            <th>Accion</th>
+                                            <th style="width: 5%">Preview</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -221,14 +210,9 @@ $flag = $instance->getItem($id);
                                                 <td><?php echo $video->titulo; ?></td>
                                                 <td>
                                                     <div class="row">
-                                                        <div class="large-6 columns">
+                                                        <div class="large-12 columns">
                                                             <a onclick="previewVideo(<?php echo $video->idVideoCurso; ?>)">
                                                                 <img src="../../img/preview.png" alt="View" style="width: 20px; height: auto;">
-                                                            </a>
-                                                        </div>
-                                                        <div class="large-6 columns">
-                                                            <a href="../../Controllers/Edit/VideosCurso.php?id=<?php echo $video->idVideoCurso; ?>">
-                                                                <img src="../../img/delete.png" alt="Delete" style="width: 20px; height: auto;">
                                                             </a>
                                                         </div>
 
@@ -258,10 +242,9 @@ $flag = $instance->getItem($id);
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th>Edit</th>
-                                                <th>ID</th>
+                                                <th style="width:5%;">ID</th>
                                                 <th>Titulo</th>
-                                                <th>Acciones</th>
+                                                <th style="width: 5%">Preview</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -271,23 +254,13 @@ $flag = $instance->getItem($id);
                                             ?>
 
                                                 <tr>
-                                                    <td style="text-align: center;">
-                                                        <a href="../Edit/JuegosCurso.php?id=<?php echo $game->idJuegoCurso; ?>">
-                                                            <img src="../../img/edit.png" alt="Edit" style="width: 20px; height: auto;">
-                                                        </a>
-                                                    </td>
-                                                    <td><?php echo $game->idJuegocurso; ?></td>
+                                                    <td><?php echo $game->idJuegoCurso; ?></td>
                                                     <td><?php echo $game->titulo; ?></td>
                                                     <td>
                                                         <div class="row">
-                                                            <div class="large-6 columns">
+                                                            <div class="large-12 columns">
                                                                 <a target="_blank" href="../../Repo/Games/<?php echo $game->path; ?>">
                                                                     <img src="../../img/preview.png" alt="View" style="width: 20px; height: auto;">
-                                                                </a>
-                                                            </div>
-                                                            <div class="large-6 columns">
-                                                                <a href="../../Controllers/Edit/JuegosCurso.php?id=<?php echo $game->idJuegoCurso; ?>">
-                                                                    <img src="../../img/delete.png" alt="Delete" style="width: 20px; height: auto;">
                                                                 </a>
                                                             </div>
                                                         </div>

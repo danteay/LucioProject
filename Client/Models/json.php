@@ -9,9 +9,9 @@ class JSONResponse
 	public $_estado;
 	public $_mensaje;
 
-  public function __construct($estado, $mensaje)
-  {
-  	$this->_estado = $estado;
-  	$this->_mensaje = $mensaje;
-  }
+  	public function __construct($estado, $mensaje)
+  	{
+  		$this->_estado = $estado;
+  		$this->_mensaje = $mensaje;
+  	}
 }

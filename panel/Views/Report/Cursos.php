@@ -38,7 +38,6 @@ $instance = new Cursos();
                     <a href="#">Padres</a>
                     <ul class="menu vertical">
                         <li><a href="../Report/Padres.php">Ver Registrados</a></li>
-                        <li><a href="../Add/Padres.php">Agregar</a></li>
                     </ul>
                 </li>
                 <li>

@@ -129,8 +129,8 @@ class QueryMap
             "updateItem" => "UPDATE InscritosCurso SET [[data]] WHERE idInscritoCurso = [[id]]",
             "deleteItem" => "DELETE FROM InscritosCurso WHERE idInscritoCurso = [[id]]",
             "getLastItem" => "SELECT MAX(idInscritoCurso) AS 'last' FROM InscritosCurso",
-            "getAllItemsByCurso" => "SELECT * FROM Infantes WHERE tutor = [[id]]",
-            "getAllItemsByInfante" => "SELECT * FROM Infantes WHERE tutor = [[id]]"
+            "getAllItemsByCurso" => "SELECT * FROM InscritosCurso WHERE curso = [[id]]",
+            "getAllItemsByInfante" => "SELECT * FROM InscritosCurso WHERE infante = [[id]]"
         );
     }
 
