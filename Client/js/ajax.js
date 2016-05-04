@@ -5,7 +5,10 @@ var funciones = new Map();
   funciones.set('mensaje', ShowMessageDin);
   funciones.set('init-select',SelectInitialize);
   funciones.set('update_infantes',LoadAJAXCondicional);
-
+  funciones.set('exec',Master)
+function Master (fun) {
+  fun[1]();
+}
 function ProcesaSolicitud(solicitud){
   for (argumento of solicitud) {
     let funcion = funciones.get(argumento[0]);
@@ -68,11 +71,13 @@ function SolicitudAjax (ruta, metodo, parametros, funcion, header) {
           console.log("resultado: ", ajax.responseText);
           response = JSON.parse(ajax.responseText);
           if(response._estado){
-            ProcesaSolicitud(response._mensaje);
+            if(response._mensaje[0] != "void"){
+              ProcesaSolicitud(response._mensaje);
+            }
           }
           else{
-            ShowMessage(response._mensaje[0]);
-          }
+            ShowMessage(response._mensaje[0]); 
+          }         
         }
       }
       if(header == null){

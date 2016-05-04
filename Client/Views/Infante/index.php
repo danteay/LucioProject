@@ -7,6 +7,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Patrick+Hand' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="../../vendor/Materialize/dist/css/materialize.min.css">	
 	<link rel="stylesheet" href="../../css/all.css">
+	<link rel="stylesheet" href="../../css/infantes.css">
 	<script type="text/javascript" src="../../js/sesion.js"></script>
 	<script type="text/javascript" src="../../js/ajax.js"></script>
 	<script type="text/javascript" src="../../js/infante.js"></script>
@@ -35,28 +36,29 @@
 					<h4 class="red-text text-lighten-3">Cursos</h4>
 					<div class="collection" id="lista-cursos">
 						<a href="#!" class="collection-item">Curso 1 <span class="new badge blue">4</span></a>
-						<a href="#!" class="collection-item active blue darken-4">Curso 2 <span class="new badge amber darken-2 brown-text text-darken-3">4</span></a>
+						<a href="#!" class="collection-item active">Curso 2 <span class="new badge amber darken-2 brown-text text-darken-3">4</span></a>
 						<a href="#!" class="collection-item">Curso 3 <span class="new badge blue">4</span></a>
 						<a href="#!" class="collection-item">Curso 4 <span class="new badge blue">4</span></a>
 					</div>
 				</div>
+				<div id="clave"></div>
 				<div class="col m8">
 					<div class="row">
 						<div class="col s12">
 							<ul class="tabs">
-								<li class="tab col l3" onclick="Materialize.showStaggeredList('#test1 ul')">
+								<li class="tab col l3" id="tab-li-documentos" onclick="ValidaTab(this)">
 									<a class="active" href="#test1">
 										<i class="material-icons">insert_drive_file</i> 
 										<p>Documentos</p>
 									</a>
 								</li>
-								<li class="tab col l3" onclick="Materialize.showStaggeredList('#test2 ul')">
+								<li class="tab col l3" id="tab-li-videos" onclick="ValidaTab(this)">
 									<a href="#test2">
 										<i class="material-icons">theaters</i>
 										<p>Videos</p>
 									</a>
 								</li>
-								<li class="tab col l3 " onclick="Materialize.showStaggeredList('#test3 ul')">
+								<li class="tab col l3 " id="tab-li-juegos" onclick="ValidaTab(this)">
 									<a href="#test3">
 										<i class="material-icons">videogame_asset</i>
 										<p>Juegos</p>

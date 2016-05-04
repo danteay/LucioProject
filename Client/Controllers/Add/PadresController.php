@@ -36,7 +36,7 @@ class PadresController
       if ($this->validate()) {
         $this->_instance->insertItem($this->_data);
       } else {
-        $this->_response = new JSONResponse(false, [['Error',$this->_message]]);
+        $this->_response = new JSONResponse(false, [['Error'.$this->_message]]);
       }
     } catch (\Exception $e) {
       $this->_message = $e->getMessage();
