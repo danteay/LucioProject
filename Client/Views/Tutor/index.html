@@ -7,32 +7,26 @@
 	<link rel="stylesheet" href="../../vendor/Materialize/dist/css/materialize.min.css">
 	<link rel="stylesheet" href="../../css/all.css">
 	<link rel="stylesheet" href="../../css/tutor.css">
-	<script type="text/javascript" src="../../js/ajax.js"></script>
 	<script type="text/javascript" src="../../js/sesion.js"></script>
+	<script type="text/javascript" src="../../js/ajax.js"></script>
+	<script type="text/javascript" src="../../js/tutor.js"></script>
 </head>
 <body>
 	<div class="row red darken-3 top-bar">
 		<div class="container">
 			<nav class="transparent">
-				<ul id="dropdown1" class="dropdown-content">
-					<li><a href="#!">one</a></li>
-					<li><a href="#!">two</a></li>
-					<li class="divider"></li>
-					<li class="cont-inline mid">
-						<a href="#!">
-							<i class="material-icons">power_settings_new</i> Salir
-						</a>
-					</li>
-				</ul>
 				<div class="nav-wrapper">
 					<a href="#!" class="brand-logo">Logo</a>
 					<ul class="right hide-on-med-and-down">
 						<li class="cont-inline mid padd-h-10 disable">
 							<i class="material-icons">perm_identity</i>
-							<h4>Usuario</h4>
+							<h5 id="username"></h5>
 						</li>
-						<li>
-							<a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons">more_vert</i></a>
+						<li class="cont-inline mid">
+							<a href="#!" onclick="SolicitudAjax('../../Controllers/PadresLoginController.php','POST','logout');">
+								<i class="material-icons">power_settings_new</i>
+								<h6>Salir</h6>
+							</a>
 						</li>
 					</ul>
 				</div>
@@ -47,7 +41,7 @@
 						<div class="col l12">
 							<ul class="tabs" id="tutor-tabs">
 								<li class="tab col l4 ">
-									<a class=" active indigo-text text-darken-4" href="#test1">
+									<a class=" active indigo-text text-darken-4" href="#test1" onclick="SolicitudAjax('../../Controllers/Details/PadresController.php','POST','type=');">
 										<i class="material-icons">face</i> 
 										<p>Infantes</p>
 									</a>
@@ -59,7 +53,7 @@
 									</a>
 								</li>
 								<li class="tab col l4 ">
-									<a class="indigo-text text-darken-4" href="#test3">
+									<a class="indigo-text text-darken-4" href="#test3" onclick="SolicitudAjax('../../Controllers/Details/PadresController.php','POST','type=#lista_infantes&replace=1');SolicitudAjax('../../Controllers/Details/PadresController.php','POST','type=update-select');SolicitudAjax('../../Controllers/Details/PadresController.php','POST','type=#check_cursos&replace=1');">
 										<i class="material-icons">school</i>
 										<p>Cursos</p>
 									</a>
@@ -97,7 +91,8 @@
 												</div>
 									      <div class="row">
 								      	<div class="col l12 right-align">
-								      		<a class="waves-effect waves-light btn" onclick="ProcesaFormularioAJAX('#agregar-inf', 'normal','../../Controllers/Add/InfantesController.php','POST')">Registrar</a>
+								      		<a class="waves-effect waves-light btn" 
+								      		onclick="ProcesaFormularioAJAX('#agregar-inf', 'normal','../../Controllers/Add/InfantesController.php','POST');">Registrar</a>
 								      	</div>
 								      </div>		      
 								    </div>
@@ -112,44 +107,13 @@
 				              <th data-field="t-ap">Apellido Paterno</th>
 				              <th data-field="t-am">Apellido Materno</th>
 				              <th data-field="t-crs">Cursos</th>
-				              <th data-field="t-lk">Link de acceso </th>
+				              <th data-field="t-lk">Link de acceso</th>
+				              <th data-field="t-lk">Eliminar</th>
 				          </tr>
 				        </thead>
 
-				        <tbody>
-				          <tr>
-				            <td>Alvin</td>
-				            <td>Eclair</td>
-				            <td>$0.87</td>
-				            <td>
-				            	<a href="">Curso 1</a>, <a href="">Curso 2</a>, etc ...
-				            </td>
-				            <td>
-				            	<a href="">adassdasdasd/asdasdsad</a>
-				            </td>
-				          </tr>
-				          <tr>
-				            <td>Alan</td>
-				            <td>Jellybean</td>
-				            <td>$3.76</td>
-				            <td>
-				            	<a href="">Curso 1</a>, <a href="">Curso 2</a>, etc ...
-				            </td>
-				            <td>
-				            	<a href="">adassdasdasd/asdasdsad</a>
-				            </td>
-				          </tr>
-				          <tr>
-				            <td>Jonathan</td>
-				            <td>Lollipop</td>
-				            <td>$7.00</td>
-				            <td>
-				            	<a href="">Curso 1</a>, <a href="">Curso 2</a>, etc ...
-				            </td>
-				            <td>
-				            	<a href="">adassdasdasd/asdasdsad</a>
-				            </td>
-				          </tr>
+				        <tbody id="tabla-infantes">
+				          	          				     
 				        </tbody>
 				      </table>
            
@@ -352,7 +316,59 @@
 						  </ul>
 						</div>
 						<div id="test3" class="col l12 tab-content-tutor">
-							
+							<div class="divider"></div>
+							<div class="section white texto">
+								<h4 class="center-align">Registro de infantes a cursos</h4>
+								<div class="row" id="form-inf-cursos">
+										<div class="input-field col l12">
+									    <select id="combo-infantes">
+									      <option value="" disabled selected>Elige una opción</option>
+									      <option value="1">Option 1</option>
+									      <option value="2">Option 2</option>
+									      <option value="3">Option 3</option>
+									    </select>
+									    <label>Selecciona un infante para continuar</label>
+									  </div>
+									  <div class="row texto">
+										  <div class="col l12">
+										  	<h5 class="center-align">Selecciona los cursos que desees asignar</h5>
+										  </div>
+									  	<div id="opciones-cursos" class="col l12">
+									  		<div class="input-field col l6">
+											  	<input type="checkbox" id="test5" />
+										      <label for="test5" class="texto">
+										      	<ul>
+										      		<li><h5>Titulo</h5></li>
+										      		<li><span>DEscripción</span></li>
+										      	</ul>
+										      </label>
+											  </div>
+											  <div class="input-field col l6">
+											  	<input type="checkbox" id="test9" />
+										      <label for="test9" class="texto">
+										      	<ul>
+										      		<li><h5>Titulo</h5></li>
+										      		<li><span>DEscripción</span></li>
+										      	</ul>
+										      </label>
+											  </div><div class="input-field col l6">
+											  	<input type="checkbox" id="test8" />
+										      <label for="test8" class="texto">
+										      	<ul>
+										      		<li><h5>Titulo</h5></li>
+										      		<li><span>DEscripción</span></li>
+										      	</ul>
+										      </label>
+											  </div>
+									  	</div>
+									  </div>
+									  <div class="row texto">
+									  	<div class="col l12 texto">
+									  	<a class=" col l12 waves-effect waves-light btn-large" onclick="enviaIC();">Asignar</a>
+									  </div>
+									  </div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -389,6 +405,10 @@
 	<script>
 		$(document).ready(function() {
 			$('select').material_select();
+			$('#combo-infantes').on("load", function() {
+			  $('select').material_select();
+			});
+			SolicitudAjax("../../Controllers/Details/PadresController.php","POST","type=");
 		});
 	</script>
 </body>

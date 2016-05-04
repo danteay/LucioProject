@@ -10,7 +10,7 @@ class Conexion
     /**
      * Servidor de la base de datos.
      */
-	const HOST = "localhost";
+	const HOST = "develop";
 
     /**
      * Usuario del servidor.

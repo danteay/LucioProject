@@ -69,7 +69,11 @@ class QueryMap
             "insertItem" => "INSERT INTO Cursos (titulo,descripcion,temario) VALUES ('[[titulo]]','[[descripcion]]','[[temario]]')",
             "updateItem" => "UPDATE Cursos SET [[data]] WHERE idCurso = [[id]]",
             "deleteItem" => "DELETE FROM Cursos WHERE idCurso = [[id]]",
-            "getLastItem" => "SELECT MAX(idCurso) AS 'last' FROM Cursos"
+            "getLastItem" => "SELECT MAX(idCurso) AS 'last' FROM Cursos",
+            "getAllItemsByInfante" => "SELECT idCurso, titulo 
+                FROM Cursos
+                LEFT JOIN InscritosCurso on Cursos.idCurso=InscritosCurso.curso
+                WHERE infante = [[id]]"
         );
     }
 
@@ -89,13 +93,30 @@ class QueryMap
     public function InfantesQuery()
     {
         $this->queryList['Infantes'] = array(
-            "getItem" => "SELECT * FROM Infantes WHERE idInfante = [[id]]",
+            "getItem" => "SELECT * FROM Infantes WHERE idInfante = [[id]]",            
             "getAllItems" => "SELECT * FROM Infantes",
             "insertItem" => "INSERT INTO Infantes (nombre,paterno,materno,tutor,hashcode) VALUES ('[[nombre]]','[[paterno]]','[[materno]]',[[tutor]],'[[hashcode]]')",
             "updateItem" => "UPDATE Infantes SET [[data]] WHERE idInfante = [[id]]",
             "deleteItem" => "DELETE FROM Infantes WHERE idInfante = [[id]]",
             "getLastItem" => "SELECT MAX(idInfante) AS 'last' FROM Infantes",
-            "getAllItemsByTutor" => "SELECT * FROM Infantes WHERE tutor = [[id]]"
+            "getItemByHashcode" => "SELECT * FROM Infantes WHERE hashcode = '[[id]]'",
+            "getItemByTutor" => "SELECT idInfante, nombre, paterno, materno, hashcode, GROUP_CONCAT(titulo) AS cursosinf
+                FROM Infantes
+                LEFT JOIN InscritosCurso on Infantes.idInfante=InscritosCurso.infante 
+                LEFT JOIN Cursos on InscritosCurso.curso=Cursos.idCurso
+                WHERE idInfante = [[id]]
+                GROUP BY idInfante
+                ORDER BY idInfante
+                DESC",
+            "getAllItemsByTutor" => "SELECT idInfante, nombre, paterno, materno, hashcode, GROUP_CONCAT(titulo) AS cursosinf
+                FROM Infantes
+                LEFT JOIN InscritosCurso on Infantes.idInfante=InscritosCurso.infante 
+                LEFT JOIN Cursos on InscritosCurso.curso=Cursos.idCurso
+                WHERE tutor = [[id]]
+                GROUP BY idInfante
+                ORDER BY idInfante
+                DESC",
+            "getLastItemByTutor" => "SELECT MAX(idInfante) AS nuevo FROM (SELECT * FROM Infantes WHERE tutor = [[id]]) as InfantesTutor"
         );
     }
 
