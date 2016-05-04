@@ -2,12 +2,13 @@
 
 namespace CorePHP\Models;
 
+use CorePHP\Core\Libraries\AdminDefinition;
 use CorePHP\Core\Libraries\ModelDefinition;
 
 use CorePHP\Core\Conexion;
 use CorePHP\Libraries\QueryMap;
 
-class Padres extends ModelDefinition {
+class Padres extends ModelDefinition implements AdminDefinition{
 
     public $idPadre;
 	public $nombre;
@@ -69,9 +70,6 @@ class Padres extends ModelDefinition {
             return false;
         }
     }
-
-    
-
     public function getAllItems()
     {
         $query = $this->query->queryList['Padres']['getAllItems'];
@@ -173,4 +171,46 @@ class Padres extends ModelDefinition {
         }
     }
 
+    /**
+     * @param string $user
+     * @return bool
+     * @throws \Exception
+     * Busca un elemento basado en el usuario
+     */
+    public function getItemByUser($user)
+    {
+        $query = $this->query->queryList['Padres']['getItemByUser'];
+        $data = array(
+            "[[user]]" => $user
+        );
+
+        $this->conx->initializeQuery($query, $data);
+        try{
+            $result = $this->conx->getRequest();
+        }catch(\Exception $e){
+            throw new \Exception($e);
+        }
+
+        if($result = $result->fetch_assoc()){
+            foreach($result as $key => $value){
+                $this->$key = $value;
+            }
+
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * @param string $pass
+     * @return bool
+     * @throws \Exception
+     * Busca un elemento basado en el password, debe de estar declarado como unico en la base de datos
+     * de lo contrario podria generar busquedas equibocadas.
+     */
+    public function getItemByPassword($pass)
+    {
+        throw new \Exception("Method not supported");
+    }
 }

@@ -1,0 +1,16 @@
+#tutor-tabs .indicator{
+  background-color: #1a237e;
+}
+.tab-content-tutor{
+  margin-top: 10px;
+}
+table.white.highlight > tbody > tr:hover{
+  background-color: #80d8ff;
+}
+table.white.highlight > tbody > tr a{
+  color: #01579b;
+  text-decoration: underline;
+}
+table.white.highlight > tbody > tr a:hover{
+  color: #1a237e;
+}

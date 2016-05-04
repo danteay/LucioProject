@@ -1,0 +1,36 @@
+@keyframes pulso{
+	0% {opacity: 0}
+	100% {opacity: 1}
+}
+#presentacion li{
+	opacity: 0;
+}
+#presentacion h1{
+	text-shadow: 0px 0px 8px black;
+}
+#presentacion{
+	width: 70vw;
+}
+.pulso{
+	animation-name: pulso;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+#login .input-field{
+	margin: 0;
+}
+#login ::-webkit-input-placeholder {
+   color: black;
+}
+
+#login :-moz-placeholder { /* Firefox 18- */
+   color: black;  
+}
+
+#login ::-moz-placeholder {  /* Firefox 19+ */
+   color: black;  
+}
+
+#login :-ms-input-placeholder {  
+   color: black;  
+}

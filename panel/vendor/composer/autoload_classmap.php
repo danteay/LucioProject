@@ -34,4 +34,7 @@ return array(
     'CorePHP\\Models\\JuegosCurso' => $vendorDir . '/corephp/mapper/Models/JuegosCurso.php',
     'CorePHP\\Models\\Padres' => $vendorDir . '/corephp/mapper/Models/Padres.php',
     'CorePHP\\Models\\VideosCurso' => $vendorDir . '/corephp/mapper/Models/VideosCurso.php',
+    'Parsedown' => $vendorDir . '/erusev/parsedown/Parsedown.php',
+    'ParsedownTest' => $vendorDir . '/erusev/parsedown/test/ParsedownTest.php',
+    'Utils\\Validations' => $baseDir . '/Utils/Validations.php',
 );

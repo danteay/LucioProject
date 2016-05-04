@@ -14,6 +14,7 @@ class Infantes extends ModelDefinition {
 	public $paterno;
 	public $materno;
 	public $tutor;
+	public $hashcode;
 
     public function __construct(&$conx = null)
     {
@@ -22,6 +23,7 @@ class Infantes extends ModelDefinition {
 		$this->paterno = null;
 		$this->materno = null;
 		$this->tutor = null;
+		$this->hashcode = null;
 
         $this->initConexion($conx);
     }
@@ -68,7 +70,54 @@ class Infantes extends ModelDefinition {
         }
     }
 
-    
+    public function getItemByHashcode($id)
+    {
+        $query = $this->query->queryList['Infantes']['getItemByHashcode'];
+        $data = array(
+            "[[id]]" => $id
+        );
+
+        $this->conx->initializeQuery($query, $data);
+        try{
+            $result = $this->conx->getRequest();
+        }catch(\Exception $e){
+            throw new \Exception($e);
+        }
+
+        if($result = $result->fetch_assoc()){
+            foreach($result as $key => $value){
+                $this->$key = $value;
+            }
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function getItemByTutor($id)
+    {
+        $query = $this->query->queryList['Infantes']['getItemByTutor'];
+        $data = array(
+            "[[id]]" => $id
+        );
+
+        $this->conx->initializeQuery($query, $data);
+        try{
+            $result = $this->conx->getRequest();
+        }catch(\Exception $e){
+            throw new \Exception($e);
+        }
+
+        if($result = $result->fetch_assoc()){
+            foreach($result as $key => $value){
+                $this->$key = $value;
+            }
+
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     public function getAllItems()
     {
@@ -83,17 +132,52 @@ class Infantes extends ModelDefinition {
         }
     }
 
+    public function getAllItemsByTutor($id)
+    {
+        $query = $this->query->queryList['Infantes']['getAllItemsByTutor'];
+        $insert = array(
+            "[[id]]" => $id
+        );
+
+        $this->conx->initializeQuery($query,$insert);
+        try{
+            $result = $this->conx->getRequest();
+            return $result;
+        }catch(\Exception $e){
+            throw new \Exception($e);
+        }
+    }
+
+    public function getLastItemByTutor($id)
+    {
+        $query = $this->query->queryList['Infantes']['getLastItemByTutor'];
+        $data = array(
+            "[[id]]" => $id
+        );
+
+        $this->conx->initializeQuery($query, $data);
+        try{
+            $result = $this->conx->getRequest();
+            $result = $result->fetch_object();
+
+            return $result->nuevo;
+        }catch(\Exception $e){
+            throw new \Exception($e);
+        }
+    }
+
     public function insertItem(array $data)
     {
         extract($data);
 
-        if(isset($nombre) && !empty($nombre) && isset($paterno) && !empty($paterno) && isset($materno) && !empty($materno) && isset($tutor) && is_numeric($tutor)){
+        if(isset($nombre) && !empty($nombre) && isset($paterno) && !empty($paterno) && isset($materno) && !empty($materno) && isset($tutor) && is_numeric($tutor) && isset($hashcode) && !empty($hashcode)){
             $query = $this->query->queryList['Infantes']['insertItem'];
             $insert = array(
                 "[[nombre]]" => $nombre,
 				"[[paterno]]" => $paterno,
 				"[[materno]]" => $materno,
-				"[[tutor]]" => $tutor
+				"[[tutor]]" => $tutor,
+				"[[hashcode]]" => $hashcode
             );
 
             $this->conx->initializeQuery($query, $insert);

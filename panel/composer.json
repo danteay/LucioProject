@@ -1,5 +1,11 @@
 {
     "require": {
-        "corephp/mapper": "^1.0"
+        "corephp/mapper": "^1.0",
+        "erusev/parsedown": "^1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Utils\\": ""
+        }
     }
 }
