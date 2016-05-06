@@ -41,7 +41,7 @@ Proyecto para Ingenieria de software Escom
 * Abrir una consola o terminal e ingresar a la ruta donde se encuentra el archivo **database.sql** del proyecto situado en la raiz del mismo
 * Correr el comando **mysql -u root** o **mysql -u root -p** si su servidor tiene alguna contraseña
 * Ejecutar **source database.sql;** Esto cargara la base de datos
-* Al finalizar la carga insertar el primer usuario administrador con el comando **[ inserto into Administradores ('correo','passwd') values ('prueba@prueba.com','root') ]**, esto generara un acceso balido al panel de administración
+* Al finalizar la carga insertar el primer usuario administrador con el comando **[ inserto into Administradores (correo,passwd) values ('root@root.com','root') ]**, esto generara un acceso balido al panel de administración
 
 ## Referencias importantes
 * [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet): Formato utilizado para generar los temarios de los cursos en el panel de administracion
