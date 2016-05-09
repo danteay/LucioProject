@@ -20,7 +20,7 @@ class Conexion
     /**
      * Contraseña de Usuario.
      */
-	const PASS = "root";
+	const PASS = "";
 
     /**
      * Nombre de la base de datos.

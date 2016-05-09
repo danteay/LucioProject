@@ -1,5 +1,4 @@
-IndexIgnore *
-
 RewriteEngine on
+RewriteBase /
 
 RewriteRule Client/Views/Infante/!(.+) Client/Views/Infante/index.php?id=$1

@@ -102,7 +102,7 @@ class PadresController
             }else{
               $code .= "<td>No se han asignado cursos</td>";
             }
-            $code .= "<td><a href='/LucioProject/Client/Views/Infante/!".$inf->hashcode."'>/LucioProject/Client/Views/Infante/!".$inf->hashcode."</td>";
+            $code .= "<td><a href='/LucioProject/Client/Views/Infante/index.php?id=".$inf->hashcode."'>Ingresar</td>";
             $code .= "<td><i class='material-icons'>delete</i><td>";
             $code .= "</tr>";
           }
