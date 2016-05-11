@@ -66,7 +66,7 @@ class InfantesTutorController
           $this->response[] = ['query',$this->_reemplazo[$type],"<h5 class='center-align'>Selecciona un curso de la izquierda</h5>"];
         }
       } 
-    } else if(isset($id) && !empty(id)){
+    } else if(isset($id) && !empty($id)){
       $temp_response = array();
       if($this->valida_ID($id)){
         foreach ($this->_reemplazo as $clave => $id) {
