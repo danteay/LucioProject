@@ -27,13 +27,13 @@ function ValidaTab(tab) {
   }
   else{
     tabs = tabs || document.querySelectorAll("li[id^=tab-li-]");
-    for (tab of tabs) {
+    for (var i = tabs.length - 1; i >= 0; i--) {
+      tab = tabs[i];
       link = tab.firstElementChild;
       if(link.className.search("active") >= 0){
         SolicitudAjax('../../Controllers/Details/InfantesTutorController.php','POST',"type=#"+tab.id+"&curso="+curso);
       }
     }
-  }
 }
 
 function CheckDoc (doc) {
@@ -64,7 +64,8 @@ function ValidaCursos(col){
     id_inf = id_inf || document.querySelector("#aidi");
     if(col.className.search("active") < 0){
       curso = col.getAttribute('val');
-      for (c of cursos) {
+      for (var i = cursos.length - 1; i >= 0; i--) {
+        c = cursos[i];
         c.classList.remove('active');
       }
       col.classList.add('active');
