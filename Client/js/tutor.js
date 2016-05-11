@@ -13,10 +13,12 @@ function enviaIC () {
       }
     }
   }
-  for (option of infante) {
+  for (var i = infante.length - 1; i >= 0; i--) {
+    option = infante[i];
     if(option.selected == true){
       parametros += "&infante=" + option.value;
     }
   }
+
   SolicitudAjax('../../Controllers/Add/CursosInfanteController.php','POST',parametros);
 }
