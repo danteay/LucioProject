@@ -34,6 +34,7 @@ function ValidaTab(tab) {
         SolicitudAjax('../../Controllers/Details/InfantesTutorController.php','POST',"type=#"+tab.id+"&curso="+curso);
       }
     }
+  }
 }
 
 function CheckDoc (doc) {
