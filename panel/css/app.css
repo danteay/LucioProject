@@ -1,3 +1,40 @@
 main{
     padding-top: 1em;
 }
+
+.show-video{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0,0,0,0.5);
+    top:0;
+}
+
+.video-wrapper{
+    width: 100%;
+    height:100%;
+    position: relative;
+}
+
+.video-container{
+    max-width: 800px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+blockquote {
+    border-left: 0.3rem solid #2199E8;
+    background: #E6E6E6;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 1rem 1.5rem;
+    color: #000;
+}
+blockquote *:last-child {
+    margin: 0;
+}

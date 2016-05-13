@@ -1,6 +1,9 @@
 <?php
 require_once __DIR__."/../../vendor/autoload.php";
 
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
 use CorePHP\Models\Administradores;
 
 $instance = new Administradores();
@@ -10,7 +13,7 @@ $id = $_GET['id'];
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Administradores</title>
+    <title>Editar Administradores</title>
 
     <link rel="stylesheet" href="../../css/foundation.min.css">
     <link rel="stylesheet" href="../../css/app.css">
@@ -28,21 +31,20 @@ $id = $_GET['id'];
                     <a href="#">Administradores</a>
                     <ul class="menu vertical">
                         <li><a href="../Report/Administradores.php">Ver Registrados</a></li>
-                        <li><a href="../Add/Administradores.php">Agredar</a></li>
+                        <li><a href="../Add/Administradores.php">Agregar</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">Padres</a>
                     <ul class="menu vertical">
                         <li><a href="../Report/Padres.php">Ver Registrados</a></li>
-                        <li><a href="../Add/Padres.php">Agredar</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">Cursos</a>
                     <ul class="menu vertical">
                         <li><a href="../Report/Cursos.php">Ver Registrados</a></li>
-                        <li><a href="../Add/Cursos.php">Agredar</a></li>
+                        <li><a href="../Add/Cursos.php">Agregar</a></li>
                     </ul>
                 </li>
             </ul>

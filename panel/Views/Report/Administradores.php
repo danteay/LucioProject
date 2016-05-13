@@ -1,4 +1,8 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
 require_once __DIR__."/../../vendor/autoload.php";
 
 use CorePHP\Models\Administradores;
@@ -27,21 +31,20 @@ $instance = new Administradores();
                     <a href="#">Administradores</a>
                     <ul class="menu vertical">
                         <li><a href="../Report/Administradores.php">Ver Registrados</a></li>
-                        <li><a href="../Add/Administradores.php">Agredar</a></li>
+                        <li><a href="../Add/Administradores.php">Agregar</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">Padres</a>
                     <ul class="menu vertical">
                         <li><a href="../Report/Padres.php">Ver Registrados</a></li>
-                        <li><a href="../Add/Padres.php">Agredar</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">Cursos</a>
                     <ul class="menu vertical">
                         <li><a href="../Report/Cursos.php">Ver Registrados</a></li>
-                        <li><a href="../Add/Cursos.php">Agredar</a></li>
+                        <li><a href="../Add/Cursos.php">Agregar</a></li>
                     </ul>
                 </li>
             </ul>
@@ -86,9 +89,9 @@ $instance = new Administradores();
                     ?>
 
                         <tr>
-                            <td>
+                            <td style="text-align: center;">
                                 <a href="../Edit/Administradores.php?id=<?php echo $fila->idAdministrador; ?>">
-                                    <img src="../../img/edit.png" alt="Editar">
+                                    <img src="../../img/edit.png" alt="Editar" style="width: 20px; height: auto;">
                                 </a>
                             </td>
                             <td><?php echo $fila->idAdministrador; ?></td>

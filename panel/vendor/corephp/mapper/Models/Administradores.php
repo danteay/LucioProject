@@ -64,7 +64,7 @@ class Administradores extends ModelDefinition implements AdminDefinition{
         }
     }
 
-    public function getItemByUser($user)
+        public function getItemByUser($user)
     {
         $query = $this->query->queryList['Administradores']['getItemByUser'];
         $data = array(

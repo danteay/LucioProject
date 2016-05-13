@@ -81,6 +81,22 @@ class DocumentosCurso extends ModelDefinition {
         }
     }
 
+    public function getAllItemsByCurso($id)
+    {
+        $query = $this->query->queryList['DocumentosCurso']['getAllItemsByCurso'];
+        $insert = array(
+            "[[id]]" => $id
+        );
+
+        $this->conx->initializeQuery($query,$insert);
+        try{
+            $result = $this->conx->getRequest();
+            return $result;
+        }catch(\Exception $e){
+            throw new \Exception($e);
+        }
+    }
+
     public function insertItem(array $data)
     {
         extract($data);

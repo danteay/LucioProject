@@ -1,0 +1,121 @@
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../vendor/material-design-icons/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+       local('MaterialIcons-Regular'),
+       url(../vendor/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+       url(../vendor/material-design-icons/iconfont/MaterialIcons-Regular.woff) format('woff'),
+       url(../vendor/material-design-icons/iconfont/MaterialIcons-Regular.ttf) format('truetype');
+}
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+html, body{
+	font-family: 'Patrick Hand', cursive;
+}
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
+.fondo-img{
+	background-color: #e5e5e5;
+}
+.contenedor-principal{
+	width: 100%;
+	overflow: hidden;
+}
+nav{
+	box-shadow:  none;
+}
+nav ul{
+	height: inherit;
+}
+.top-bar {
+	height: 64px;
+	margin: 0;
+}
+.tab a *{
+	display:  inline-block;
+	vertical-align: middle;
+	margin: 0;
+}
+.cont-inline *{
+	display: inline-block !important;
+	margin: 0 !important;
+}
+.cont-inline.mid *{
+	vertical-align: middle;
+}
+.padd-h-10{
+	padding: 0 10px;
+}
+.page-footer{
+	margin-top: 0 !important;
+}
+.wrap{
+	min-height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+.collection a.collection-item:hover:not(.active){
+	background-color: #bec3f8;
+}
+.texto{
+	padding: 10px;
+}
+.texto h1, .texto h2, .texto h3, .texto h4, .texto h5, .texto h6{
+	margin: 0;
+}
+.row{
+	margin-bottom: 0 !important
+}
+.collapsible .collapsible-header, .collapsible .collapsible-body{
+	background-color: white;
+}
+.waves-effect.waves-blue .waves-ripple {
+  background-color: rgba(33, 150, 243, 0.7);
+}
+.waves-effect.waves-lime .waves-ripple {
+  background-color: rgba(205,	220, 57, 0.7);
+}
+.titulo-collapsible-header{
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.parallax-container{
+	height: 100vh;
+}
+.all{
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+}
+.gigante{
+	font-size: 10rem;
+}
