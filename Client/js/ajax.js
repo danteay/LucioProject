@@ -16,7 +16,7 @@ function ProcesaSolicitud(solicitud){
       funcion(argumento);
     }
     else{
-      ShowMessage(argumento[1]);
+      ShowMessage("Función " + argumento[0] + " desconocida");
     }
   }
 }
@@ -218,7 +218,8 @@ function ProcesaFormularioAJAX (idFormulario, tipoInput, url, metodo, funcion, h
   }
 }
 function ClearForm (arreglo) {
-  for (input of arreglo) {
+  for (var i = arreglo.length - 1; i >= 0; i--) {
+    input = arreglo[i];
     if(input.type == "checkbox"){
       if(input.checked){
         input.checked = false;
@@ -227,5 +228,5 @@ function ClearForm (arreglo) {
     else if(input.localName == "input"){
       input.value = "";
     }
-  } 
+  }
 }
